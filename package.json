@@ -1,0 +1,48 @@
+{
+  "name": "angular-typescript-validation",
+  "version": "0.0.1",
+  "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "main": "dist/module/validation.module.js",
+  "typings": "typings/index.d.ts",
+  "typescript": {
+    "definition": "angular-typescript-validation.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladislavSudakov/angular-typescript-validation.git"
+  },
+  "keywords": [
+    "validation",
+    "typescript",
+    "angular"
+  ],
+  "author": "“Vladislav <“sudakovmail@gmail.com”> (“https://github.com/VladislavSudakov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VladislavSudakov/angular-typescript-validation/issues"
+  },
+  "homepage": "https://github.com/VladislavSudakov/angular-typescript-validation#readme",
+  "dependencies": {
+    "angular": "1.5.5",
+    "jquery": "2.2.4",
+    "ts-nameof": "^0.7.0"
+  },
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-tslint": "^5.0.0",
+    "gulp-typescript": "^2.13.3",
+    "mocha": "^2.3.3",
+    "ts-loader": "^1.3.2",
+    "tslint": "^3.13.0",
+    "tslint-loader": "^3.3.0",
+    "typescript": "^2.1.4"
+  }
+}
