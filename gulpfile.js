@@ -13,7 +13,7 @@ gulp.task("typescript", ["clean-scripts"], function() {
         typescript: require("typescript")
     });
 
-    return gulp.src(["./typings/**/*.d.ts", "./src/**/*.ts", "./angular-typescript-validation.d.ts"])
+    return gulp.src(["./typings/**/*.d.ts", "./src/**/*.ts", "./index.d.ts"])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(replace(/(}\)\()(.*\|\|.*;)/g, '$1/* istanbul ignore next */$2'))
@@ -32,7 +32,11 @@ gulp.task("tslint", function() {
 });
 
 gulp.task("clean-scripts", function(cb) {
-    return del(["./dist/**/*"], cb);
+    return del(["./dist/**/*"], cb);	
+});
+
+gulp.task("clean-typings", function(cb) {
+    return del(["./typings"], cb);
 });
 
 gulp.task("build", ["tslint", "typescript"]);

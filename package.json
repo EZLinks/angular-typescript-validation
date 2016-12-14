@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
   "scripts": {
-    "build": "gulp build"
+    "build": "typings i & gulp build & gulp clean-typings"
   },
   "main": "dist/module/validation.module.js",
   "typings": "typings/index.d.ts",
   "typescript": {
-    "definition": "angular-typescript-validation.d.ts"
+    "definition": "index.d.ts"
   },
   "repository": {
     "type": "git",
