@@ -2,8 +2,12 @@
   "name": "angular-typescript-validation",
   "main": "index.d.ts",
   "globalDependencies": {
-    "angular": "registry:dt/angular#1.5.0+20160517064839",       
-    "jquery": "registry:dt/jquery#1.10.0+20160417213236",    
-    "node": "registry:dt/node#6.0.0+20161121110008"    
+    "angular": "registry:dt/angular#1.5.0+20160517064839",
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160726072212",
+    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "node": "registry:dt/node#6.0.0+20161121110008"
+  },
+  "devDependencies": {
+    "es6-promise": "registry:npm/es6-promise#3.0.0+20160723033700"
   }
 }

@@ -1,5 +1,4 @@
-﻿import 'ts-nameof';
-
+﻿import {Promise} from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 import { RequiredValidationRule } from '../validationRules/requiredValidationRule';
 import { RealTimeServerValidationRule } from '../validationRules/serverValidationRule';
@@ -28,8 +27,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param keyFunc
      * @param message
      */
-    public required(keyFunc: (obj: T) => void, message: string): void {
-        let key: string = nameof<T>(keyFunc);
+    public required(key: string, message: string): void {
         let rule: IValidationRule = new RequiredValidationRule(key, message);
         this.addRule(key, rule);
     }
@@ -41,8 +39,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param value
      * @param message
      */
-    public maxlen(keyFunc: (obj: T) => void, value: number, message: string): void {
-        let key: string = nameof<T>(keyFunc);
+    public maxlen(key: string, value: number, message: string): void {
         let rule: IValidationRule = new MaxLenValidationRule(key, value, message);
         this.addRule(key, rule);
     }
@@ -54,8 +51,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param value
      * @param message
      */
-    public minlen(keyFunc: (obj: T) => void, value: number, message: string): void {
-        let key: string = nameof<T>(keyFunc);
+    public minlen(key: string, value: number, message: string): void {
         let rule: IValidationRule = new MinLenValidationRule(key, value, message);
         this.addRule(key, rule);
     }
@@ -67,8 +63,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param validationCall
      * @param message
      */
-    public serverValidation(keyFunc: (obj: T) => void, validationCall: (value: any) => Promise<boolean>, message: string): void {
-        let key: string = nameof<T>(keyFunc);
+    public serverValidation(key: string, validationCall: (value: any) => Promise<boolean>, message: string): void {
         let rule: IValidationRule = new RealTimeServerValidationRule(key, validationCall, message);
         this.addRule(key, rule);
     }
@@ -103,7 +98,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
         let seqRules: Array<Array<IValidationRule>> = new Array<Array<IValidationRule>>();
 
-        let rules: IValidationRule[] = this.rulesMap.get(key);
+        let rules: IValidationRule[] = this.rulesMap[key];
         if (rules && rules.length) {
             for (let i: number = 0; i < this.rules.length; i++) {
                 seqRules[i] = [];

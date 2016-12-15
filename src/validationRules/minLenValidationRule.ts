@@ -1,4 +1,5 @@
-﻿import { IValidationRule } from '../interfaces/validationRule';
+﻿import {Promise} from 'es6-promise';
+import { IValidationRule } from '../interfaces/validationRule';
 
 /**
  * rule for min lenght.

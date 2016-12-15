@@ -7,28 +7,31 @@ import { ValidationConfig } from '../config/validationConfig';
  */
 export class InitValidationModuleProvider {
 
-    private static configuration: ValidationConfig;
+    private static configuration: ValidationConfig = InitValidationModuleProvider.init();
 
     /**
      * inits validation module.
      */
-    public static init(config?: ValidationConfig): void {
+    public static init(config?: ValidationConfig): ValidationConfig {
 
         // init configuration
         this.configuration = new ValidationConfig();
 
-        this.configuration.fieldErrorHandler = this.defaultFieldErrorHandler;
-        this.configuration.templateUrl = this.defaultTemplateUrl;
-        this.configuration.validationModuleName = this.defaultModuleName;
+        this.configuration.fieldErrorHandler = (isError: boolean, element: any, fieldName: string) => {
+            element.parents('.field').toggleClass('error', isError);
+        };
+
+        this.configuration.templateHtml = this.defaultTemplateHtml;
         this.configuration.validationTimoutMs = this.defaultTimeoutMs;
 
         if (config) {
 
             this.setIfDefined(this.configuration, 'fieldErrorHandler', config.fieldErrorHandler);
-            this.setIfDefined(this.configuration, 'templateUrl', config.templateUrl);
-            this.setIfDefined(this.configuration, 'validationModuleName', config.validationModuleName);
+            this.setIfDefined(this.configuration, 'templateUrl', config.templateHtml);
             this.setIfDefined(this.configuration, 'validationTimoutMs', config.validationTimoutMs);
         }
+
+        return this.configuration;
     }
 
     /**
@@ -49,24 +52,14 @@ export class InitValidationModuleProvider {
     }
 
     /**
-     * default module name.
+     * default messages template Html.
      */
-    private static get defaultModuleName(): string {
-        return 'ETN.Validation';
-    }
-
-    /**
-     * default messages template Url.
-     */
-    private static get defaultTemplateUrl(): string {
-        return 'directives/validationMessage.html';
-    }
-
-    /**
-     * default error handler.
-     */
-    private static defaultFieldErrorHandler = (isError: boolean, element: any, fieldName: string) => {
-        element.parents('.field').toggleClass('error', isError);
+    private static get defaultTemplateHtml(): string {
+        return `<div class="ui error message" style="display: block;" ng-show="vm.isFieldValid() === false"> 
+                <ul class="list"> 
+                <li ng-repeat="error in vm.errors()" ng-show="vm.showError(error)">{{ error.message }}</li>
+                </ul>
+                </div>`;
     }
 
     /**

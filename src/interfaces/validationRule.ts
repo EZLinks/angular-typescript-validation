@@ -1,4 +1,6 @@
-﻿import { IMessage } from './message';
+﻿import {Promise} from 'es6-promise';
+
+import { IMessage } from './message';
 
 /**
  * base interface for validation rule.

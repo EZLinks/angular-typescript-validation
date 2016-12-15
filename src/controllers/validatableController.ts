@@ -1,4 +1,5 @@
 ﻿import 'angular';
+import {Promise} from 'es6-promise';
 
 import { ErrorProcessor } from '../utils/errorProcessor';
 import { IValidationRule } from '../interfaces/validationRule';
@@ -32,9 +33,10 @@ export abstract class ValidatableController {
             (rule: IValidationRule, result: boolean) => {
 
                 if (!result) {
-                    ErrorProcessor.setFieldError(rule.propertyName, rule.attribute, this.form);
+                    this.scope.$apply(() => {
+                        ErrorProcessor.setFieldError(rule.propertyName, rule.attribute, this.form);
+                    });
                 }
-
             });
     }
 

@@ -1,4 +1,5 @@
 ﻿import 'angular';
+import {Promise} from 'es6-promise';
 
 import { IValidationRule } from '../interfaces/validationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';

@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
   "scripts": {
-    "build": "typings i & gulp build & gulp clean-typings",
-    "postinstall": "typings i & npm i & gulp build & gulp clean-typings"
+    "build": "typings i & gulp tslint & gulp clean-scripts & tsc & gulp clean-typings",
+    "postinstall": "typings i & gulp tslint & gulp clean-scripts & tsc & gulp clean-typings"
   },
-  "main": "dist/module/validation.module.js",
-  "typings": "typings/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "typescript": {
-    "definition": "index.d.ts"
+    "definition": "dist/index.d.ts"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,12 @@
   "homepage": "https://github.com/VladislavSudakov/angular-typescript-validation#readme",
   "dependencies": {
     "angular": "1.5.5",
-    "jquery": "2.2.4",
-    "ts-nameof": "^0.7.0"
+    "jquery": "2.2.4"
   },
   "devDependencies": {
     "del": "^2.0.2",
+    "es6-promise": "^4.0.5",
+    "es6-shim": "^0.35.2",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",

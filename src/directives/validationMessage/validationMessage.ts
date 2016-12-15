@@ -34,19 +34,13 @@ export class ValidationMessageDirective implements ng.IDirective {
     public controller: any = ValidationMessageController;
     public controllerAs: string = 'vm';
     public replace: boolean = true;
-    public templateUrl: string;
-
-    private fieldName: string;
-    private formName: string;
-    private element: any;
-    private form: ng.IFormController;
-    private rules: IValidationRule[];
+    public template: string;
 
     /**
      * inits directive
      */
     constructor() {
-        this.templateUrl = InitValidationModuleProvider.config.templateUrl;
+        this.template = InitValidationModuleProvider.config.templateHtml;
     }
 
     /**
@@ -57,12 +51,23 @@ export class ValidationMessageDirective implements ng.IDirective {
      * @param attrs
      * @param ctrl
      */
-    public link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
+    public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
+        let worker: DirectiveWorker = new DirectiveWorker();
         let basicController: ValidatableController = ValidationUtilities.getController(scope.$parent);
-        this.initFields(scope, element, attrs, basicController);
-        this.watchError(scope);
+        worker.initFields(scope, element, attrs, basicController);
+        worker.watchError(scope);
     }
+}
+
+class DirectiveWorker {
+
+    private fieldName: string;
+    private formName: string;
+    private element: any;
+    private form: ng.IFormController;
+    private rules: IValidationRule[];
+    private controllerAs: string = 'vm';
 
     /**
      * inits the main fields needed to proper work of the directive.
@@ -73,7 +78,7 @@ export class ValidationMessageDirective implements ng.IDirective {
      * @param ctrl - controller.
      * @returns {boolean}
      */
-    private initFields(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: ValidatableController): void {
+    public initFields(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: ValidatableController): void {
 
         this.element = element;
         this.fieldName = attrs['for'];
@@ -85,7 +90,7 @@ export class ValidationMessageDirective implements ng.IDirective {
             this.rules = [];
         }
 
-        scope[this.controllerAs].formHasError = this.formHasError;
+        scope[this.controllerAs].isFieldValid = this.isFieldValid;
         scope[this.controllerAs].errors = this.errors;
         scope[this.controllerAs].showError = this.showError;
 
@@ -99,23 +104,16 @@ export class ValidationMessageDirective implements ng.IDirective {
      * 
      * @param scope
      */
-    private watchError(scope: ng.IScope): void {
+    public watchError(scope: ng.IScope): void {
 
-        scope.$parent.$watch(`${this.formName}.$valid`,
+        scope.$parent.$watch(`${this.formName}.$error.${this.fieldName}`,
             (newVal: any, oldVal: any) => {
 
                 if (newVal !== oldVal) {
                     InitValidationModuleProvider.config.fieldErrorHandler(!this.isFieldValid(), this.element, this.fieldName);
                 }
-            }
+            }, true
         );
-    }
-
-    /**
-     * checks if form is invalid.
-     */
-    private formHasError = (): boolean => {
-        return this.form.$invalid;
     }
 
     /**
@@ -145,7 +143,7 @@ export class ValidationMessageDirective implements ng.IDirective {
     /**
      * checks if field is valid.
      */
-    private isFieldValid(): boolean {
+    private isFieldValid = (): boolean => {
         return ErrorProcessor.isFieldValid(this.fieldName, this.form);
     }
 }

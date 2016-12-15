@@ -102,6 +102,10 @@ export class ErrorProcessor {
 
         let isValid: boolean = true;
 
+        if (!form || !form.$error) {
+            return true;
+        }
+
         for (var attr in form.$error) {
             if (form.$error.hasOwnProperty(attr) && attr === fieldName) {
 

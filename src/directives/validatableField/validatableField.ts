@@ -16,12 +16,6 @@ export class ValidatableFieldDirective implements ng.IDirective {
     public restrict: string = 'A';
     public require: string = 'ngModel';
 
-    private fieldName: string;
-    private seqRules: Array<Array<IValidationRule>>;
-    private form: ng.IFormController;
-
-    private timer: NodeJS.Timer = null;
-
     /**
      * link for directive.
      * 
@@ -30,13 +24,26 @@ export class ValidatableFieldDirective implements ng.IDirective {
      * @param attrs
      * @param ctrl
      */
-    public link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
+    public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
+        let worker: DirectiveWorker = new DirectiveWorker();
         let basicController: ValidatableController = ValidationUtilities.getController(scope);
-        if (this.initFields(scope, element, attrs, basicController)) {
-            this.watchModel(scope, attrs);
+        if (worker.initFields(scope, element, attrs, basicController)) {
+            worker.watchModel(scope, attrs);
         }
     }
+}
+
+/**
+ * class for processing directive tasks.
+ */
+class DirectiveWorker {
+
+    private fieldName: string;
+    private seqRules: Array<Array<IValidationRule>>;
+    private form: ng.IFormController;
+
+    private timer: NodeJS.Timer = null;
 
     /**
      * inits the main fields needed to proper work of the directive.
@@ -47,7 +54,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
      * @param ctrl - controller.
      * @returns {boolean}
      */
-    private initFields(
+    public initFields(
         scope: ng.IScope,
         element: ng.IAugmentedJQuery,
         attrs: ng.IAttributes,
@@ -70,7 +77,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
      * @param scope - scope
      * @param attr - element attributes
      */
-    private watchModel(scope: ng.IScope, attr: ng.IAttributes): void {
+    public watchModel(scope: ng.IScope, attr: ng.IAttributes): void {
 
         scope.$watch(attr['ngModel'],
             (newVal: any, oldVal: any) => {
