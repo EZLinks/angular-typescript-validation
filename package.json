@@ -4,7 +4,7 @@
   "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
   "scripts": {
     "build": "typings i & gulp tslint & gulp clean-scripts & tsc & gulp clean-typings",
-    "postinstall": "typings i & gulp tslint & gulp clean-scripts & tsc & gulp clean-typings"
+    "postinstall": "typings i & tsc"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
