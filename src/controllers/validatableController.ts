@@ -43,8 +43,11 @@ export abstract class ValidatableController {
     /**
      * adds the server error to form validation.
      */
-    protected addServerError(fieldName: string, errorMesage: string): void {
-        ErrorProcessor.addServerFieldError(fieldName, errorMesage, this.form);
+    protected addServerError = (fieldName: string, errorMesage: string) => {
+
+        this.scope.$apply(() => {
+            ErrorProcessor.addServerFieldError(fieldName, errorMesage, this.form);
+        });
     }
 
     /**
