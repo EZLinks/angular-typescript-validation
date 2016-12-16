@@ -5,6 +5,7 @@ import { RealTimeServerValidationRule } from '../validationRules/serverValidatio
 import { MinLenValidationRule } from '../validationRules/minLenValidationRule';
 import { MaxLenValidationRule } from '../validationRules/maxLenValidationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
+import { ValidationUtilities } from '../utils/validationUtilities';
 
 /**
  * helps to define validation rules for models.
@@ -27,7 +28,8 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param keyFunc
      * @param message
      */
-    public required(key: string, message: string): void {
+    public required(func: (obj: T) => void, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
         let rule: IValidationRule = new RequiredValidationRule(key, message);
         this.addRule(key, rule);
     }
@@ -39,7 +41,8 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param value
      * @param message
      */
-    public maxlen(key: string, value: number, message: string): void {
+    public maxlen(func: (obj: T) => void, value: number, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
         let rule: IValidationRule = new MaxLenValidationRule(key, value, message);
         this.addRule(key, rule);
     }
@@ -51,7 +54,8 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param value
      * @param message
      */
-    public minlen(key: string, value: number, message: string): void {
+    public minlen(func: (obj: T) => void, value: number, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
         let rule: IValidationRule = new MinLenValidationRule(key, value, message);
         this.addRule(key, rule);
     }
@@ -63,7 +67,8 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param validationCall
      * @param message
      */
-    public serverValidation(key: string, validationCall: (value: any) => Promise<boolean>, message: string): void {
+    public serverValidation(func: (obj: T) => void, validationCall: (value: any) => Promise<boolean>, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
         let rule: IValidationRule = new RealTimeServerValidationRule(key, validationCall, message);
         this.addRule(key, rule);
     }

@@ -43,4 +43,22 @@ export class ValidationUtilities {
 
         return false;
     }
+
+    /**
+     * gets property name from expression.
+     */
+    public static fromExpression<T>(func: (obj: T) => void): string {
+
+        let varExtractor: RegExp = new RegExp('return (.*);');
+        let m: RegExpExecArray = varExtractor.exec(func + '');
+
+        if (m && m.length === 2) {
+            let parts: Array<string> = m[1].split('.');
+            if (parts.length === 2) {
+                return parts[1];
+            }
+        }
+
+        throw new Error('Cannot get property name from expression.');
+    }
 }
