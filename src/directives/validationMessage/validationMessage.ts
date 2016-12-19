@@ -37,6 +37,13 @@ export class ValidationMessageDirective implements ng.IDirective {
     public template: string;
 
     /**
+     * creates a new instance of directive
+     */
+    public static factory(): ValidationMessageDirective {
+        return new ValidationMessageDirective();
+    }
+
+    /**
      * inits directive
      */
     constructor() {

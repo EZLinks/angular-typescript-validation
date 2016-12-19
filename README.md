@@ -29,8 +29,8 @@ import { ValidatableFieldDirective, ValidationMessageDirective } from 'angular-t
 let yourModule = angular.module('YourModuleName', []);
 
 // setup directives, you can use different directive names if you wish to
-commonModule.directive('validatableField', () => new ValidatableFieldDirective());
-commonModule.directive('validationMessage', () => new ValidationMessageDirective());
+commonModule.directive('validatableField',  ValidatableFieldDirective.factory);
+commonModule.directive('validationMessage', ValidationMessageDirective.factory);
 ```
 
 ## Usage

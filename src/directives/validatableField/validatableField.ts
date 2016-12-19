@@ -17,6 +17,13 @@ export class ValidatableFieldDirective implements ng.IDirective {
     public require: string = 'ngModel';
 
     /**
+     * creates a new instance of directive
+     */
+    public static factory(): ValidatableFieldDirective {
+        return new ValidatableFieldDirective();
+    }
+
+    /**
      * link for directive.
      * 
      * @param scope
