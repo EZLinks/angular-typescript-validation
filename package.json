@@ -28,12 +28,12 @@
   "homepage": "https://github.com/VladislavSudakov/angular-typescript-validation#readme",
   "dependencies": {
     "angular": "1.5.5",
-    "jquery": "2.2.4"
+    "jquery": "2.2.4",
+    "es6-promise": "^4.0.5",
+    "es6-shim": "^0.35.2"
   },
   "devDependencies": {
     "del": "^2.0.2",
-    "es6-promise": "^4.0.5",
-    "es6-shim": "^0.35.2",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
