@@ -27,8 +27,9 @@ gulp.task("typescript", ["clean-scripts"], function() {
 
 gulp.task("tslint", function() {
     return gulp.src(["./src/**/*.ts", "!./typings/**/*.d.ts"])
-        .pipe(tslint())
-        .pipe(tslint.report("verbose"));
+        .pipe(tslint({
+            formatter: "verbose"
+        }));
 });
 
 gulp.task("clean-scripts", function(cb) {

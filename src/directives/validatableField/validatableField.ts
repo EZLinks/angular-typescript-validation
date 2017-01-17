@@ -1,4 +1,5 @@
 ﻿import 'angular';
+import 'node';
 
 import { IValidationRule } from '../../interfaces/validationRule';
 import { InitValidationModuleProvider } from '../../init/initValidationModuleProvider';
@@ -97,7 +98,7 @@ class DirectiveWorker {
                         clearTimeout(this.timer);
                     }
 
-                    this.timer = setTimeout(() => {
+                    this.timer = <any>setTimeout(() => {
 
                             let entity: Object = {};
                             entity[this.fieldName] = newVal;
@@ -114,7 +115,7 @@ class DirectiveWorker {
                                     }
                                 });
                         },
-                        InitValidationModuleProvider.config.validationTimoutMs);
+                    InitValidationModuleProvider.config.validationTimoutMs);
                 }
             });
     }

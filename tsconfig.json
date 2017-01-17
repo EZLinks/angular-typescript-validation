@@ -13,9 +13,12 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true
   },
+  "types": [
+    "angular",
+    "node"
+  ],
   "files": [
-    "src/index.ts",
-    "typings/index.d.ts"
+    "src/index.ts"
   ],
   "compileOnSave": false,
   "exclude": [
