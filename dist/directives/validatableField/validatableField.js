@@ -1,6 +1,5 @@
 "use strict";
 require("angular");
-require("node");
 var initValidationModuleProvider_1 = require("../../init/initValidationModuleProvider");
 var validationUtilities_1 = require("../../utils/validationUtilities");
 var errorProcessor_1 = require("../../utils/errorProcessor");

@@ -1,5 +1,4 @@
 ﻿import 'angular';
-import 'node';
 
 import { IValidationRule } from '../../interfaces/validationRule';
 import { InitValidationModuleProvider } from '../../init/initValidationModuleProvider';
@@ -51,7 +50,7 @@ class DirectiveWorker {
     private seqRules: Array<Array<IValidationRule>>;
     private form: ng.IFormController;
 
-    private timer: NodeJS.Timer = null;
+    private timer: any = null;
 
     /**
      * inits the main fields needed to proper work of the directive.
