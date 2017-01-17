@@ -6,9 +6,9 @@
     "build": "gulp build"
   },
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "index.d.ts",
   "typescript": {
-    "definition": "dist/index.d.ts"
+    "definition": "index.d.ts"
   },
   "repository": {
     "type": "git",
