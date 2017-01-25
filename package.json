@@ -1,6 +1,6 @@
 {
   "name": "angular-typescript-validation",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
   "scripts": {
     "build": "gulp build"
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VladislavSudakov/angular-typescript-validation.git"
+    "url": "git+https://github.com/EZLinks/angular-typescript-validation.git"
   },
   "keywords": [
     "validation",
     "typescript",
     "angular"
   ],
-  "author": "“Vladislav <“sudakovmail@gmail.com”> (“https://github.com/VladislavSudakov)",
+  "author": "EZLinks <“ejohnson@ezlinks.com”> (“https://github.com/EZLinks”)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/VladislavSudakov/angular-typescript-validation/issues"
+    "url": "https://github.com/EZLinks/angular-typescript-validation/issues"
   },
-  "homepage": "https://github.com/VladislavSudakov/angular-typescript-validation#readme",
+  "homepage": "https://github.com/EZLinks/angular-typescript-validation#readme",
   "dependencies": {
     "angular": "1.5.5",
     "es6-promise": "^4.0.5",
