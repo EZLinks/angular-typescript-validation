@@ -33,7 +33,7 @@ gulp.task("tslint", function() {
 });
 
 gulp.task("clean-scripts", function(cb) {
-    return del(["./dist/**/*"], cb);	
+    return del(["./dist/**/*"], cb);
 });
 
 gulp.task("clean-typings", function(cb) {
@@ -48,7 +48,7 @@ gulp.task('beforeDeploy', function(callback) {
             throw(err);
         }
 
-        let result = data.replace(/dist/g, '');
+        var result = data.replace(/dist/g, '');
 
         fs.writeFile('.gitignore', result.trim(), callback);
     });
