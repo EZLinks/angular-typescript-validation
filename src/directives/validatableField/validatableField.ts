@@ -25,7 +25,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
 
     /**
      * link for directive.
-     * 
+     *
      * @param scope
      * @param element
      * @param attrs
@@ -54,7 +54,7 @@ class DirectiveWorker {
 
     /**
      * inits the main fields needed to proper work of the directive.
-     * 
+     *
      * @param scope - scope
      * @param element - input element
      * @param attrs - element attributes.
@@ -80,7 +80,7 @@ class DirectiveWorker {
 
     /**
      * makes a watch on the model value.
-     * 
+     *
      * @param scope - scope
      * @param attr - element attributes
      */
@@ -97,7 +97,7 @@ class DirectiveWorker {
                         clearTimeout(this.timer);
                     }
 
-                    this.timer = <any>setTimeout(() => {
+                    this.timer = setTimeout(() => {
 
                             let entity: Object = {};
                             entity[this.fieldName] = newVal;
@@ -114,7 +114,7 @@ class DirectiveWorker {
                                     }
                                 });
                         },
-                    InitValidationModuleProvider.config.validationTimoutMs);
+                        InitValidationModuleProvider.config.validationTimoutMs);
                 }
             });
     }

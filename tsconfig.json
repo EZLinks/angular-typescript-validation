@@ -11,12 +11,15 @@
     "removeComments": false,
     "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "lib": [
+        "dom",
+        "es6",
+        "dom.iterable",
+        "scripthost",
+        "es2016.array.include"
+    ]
   },
-  "types": [
-    "angular",
-    "node"
-  ],
   "files": [
     "src/index.ts"
   ],

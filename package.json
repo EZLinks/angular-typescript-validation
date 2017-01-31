@@ -19,7 +19,7 @@
     "typescript",
     "angular"
   ],
-  "author": "EZLinks <“ejohnson@ezlinks.com”> (“https://github.com/EZLinks”)",
+  "author": "EZLinks <ejohnson@ezlinks.com> (https://github.com/EZLinks)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EZLinks/angular-typescript-validation/issues"

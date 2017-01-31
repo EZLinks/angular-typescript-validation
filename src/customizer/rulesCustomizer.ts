@@ -1,5 +1,4 @@
 ﻿import {Promise} from 'es6-promise';
-import {Map} from 'es6-shim';
 import { IValidationRule } from '../interfaces/validationRule';
 import { RequiredValidationRule } from '../validationRules/requiredValidationRule';
 import { RealTimeServerValidationRule } from '../validationRules/serverValidationRule';

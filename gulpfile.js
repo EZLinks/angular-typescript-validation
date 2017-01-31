@@ -41,19 +41,3 @@ gulp.task("clean-typings", function(cb) {
 });
 
 gulp.task("build", ["tslint", "typescript"]);
-
-gulp.task('beforeDeploy', function(callback) {
-    fs.readFile('.gitignore', 'utf8', function (err, data) {
-        if (err) {
-            throw(err);
-        }
-
-        var result = data.replace(/dist/g, '');
-
-        fs.writeFile('.gitignore', result.trim(), callback);
-    });
-});
-
-gulp.task('afterDeploy', function(callback) {
-    fs.appendFile('.gitignore', '\ndist', callback);
-});

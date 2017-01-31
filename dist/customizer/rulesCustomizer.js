@@ -1,5 +1,4 @@
 "use strict";
-var es6_shim_1 = require("es6-shim");
 var requiredValidationRule_1 = require("../validationRules/requiredValidationRule");
 var serverValidationRule_1 = require("../validationRules/serverValidationRule");
 var minLenValidationRule_1 = require("../validationRules/minLenValidationRule");
@@ -15,7 +14,7 @@ var RulesCustomizer = (function () {
      * @param rulesMap
      */
     function RulesCustomizer(rulesMap, ruleSequense) {
-        if (rulesMap === void 0) { rulesMap = new es6_shim_1.Map(); }
+        if (rulesMap === void 0) { rulesMap = new Map(); }
         if (ruleSequense === void 0) { ruleSequense = new Array(); }
         this.rulesMap = rulesMap;
         this.ruleSequense = ruleSequense;
