@@ -2,7 +2,7 @@
 
 import { IValidationRule } from '../../interfaces/validationRule';
 import { InitValidationModuleProvider } from '../../init/initValidationModuleProvider';
-import { ValidatableController } from '../../controllers/validatableController';
+import { IValidatableController } from '../../controllers/validatableController';
 import { ValidationUtilities } from '../../utils/validationUtilities';
 import { ErrorProcessor } from '../../utils/errorProcessor';
 import { ValidationCore } from '../../core/validationCore';
@@ -34,7 +34,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
     public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
         let worker: DirectiveWorker = new DirectiveWorker();
-        let basicController: ValidatableController = ValidationUtilities.getController(scope);
+        let basicController: IValidatableController = ValidationUtilities.getController(scope);
         if (worker.initFields(scope, element, attrs, basicController)) {
             worker.watchModel(scope, attrs);
         }
@@ -65,7 +65,7 @@ class DirectiveWorker {
         scope: ng.IScope,
         element: ng.IAugmentedJQuery,
         attrs: ng.IAttributes,
-        ctrl: ValidatableController): boolean {
+        ctrl: IValidatableController): boolean {
 
         this.fieldName = attrs['name'];
         this.form = ctrl.form;

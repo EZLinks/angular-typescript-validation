@@ -1,5 +1,5 @@
 import {ValidationConfig} from './src/config/validationConfig';
-import {ValidatableController} from './src/controllers/validatableController';
+import {IValidatableController} from './src/controllers/validatableController';
 import {ValidationCore} from './src/core/validationCore';
 import {RulesCustomizer} from './src/customizer/rulesCustomizer';
 import {ValidatableFieldDirective} from './src/directives/validatableField/validatableField';
@@ -12,11 +12,13 @@ import {IValidator} from './src/interfaces/validator';
 import {ServerError} from './src/models/serverError';
 import {ErrorProcessor} from './src/utils/errorProcessor';
 import {ValidationUtilities} from './src/utils/validationUtilities';
+import {IValidationService} from './src/services/validationService';
+import {ValidationService} from './src/services/validationService';
 
 // export everything that you want to access directly in TS code outside the package
 export {
     ValidationConfig,
-    ValidatableController,
+    IValidatableController,
     ValidationCore,
     RulesCustomizer,
     ValidatableFieldDirective,
@@ -28,5 +30,7 @@ export {
     IValidator,
     ServerError,
     ErrorProcessor,
-    ValidationUtilities
+    ValidationUtilities,
+    IValidationService,
+    ValidationService
 }

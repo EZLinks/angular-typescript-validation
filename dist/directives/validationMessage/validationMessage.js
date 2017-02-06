@@ -94,7 +94,7 @@ var DirectiveWorker = (function () {
         this.element = element;
         this.fieldName = attrs['for'];
         this.form = ctrl.form;
-        this.formName = ctrl.formName();
+        this.formName = ctrl.formName;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
         if (!this.rules) {
             this.rules = [];

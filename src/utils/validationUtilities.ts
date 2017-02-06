@@ -1,6 +1,6 @@
 import 'angular';
 
-import { ValidatableController } from '../controllers/validatableController';
+import { IValidatableController } from '../controllers/validatableController';
 import { IMessage } from '../interfaces/message';
 import { IValidationRule } from '../interfaces/validationRule';
 
@@ -14,14 +14,14 @@ export class ValidationUtilities {
      * 
      * @param scope
      */
-    public static getController(scope: ng.IScope): ValidatableController {
+    public static getController(scope: ng.IScope): IValidatableController {
 
         for (var property in scope) {
             if (scope.hasOwnProperty(property)) {
 
                 let candidate: any = scope[property];
-                let isController: boolean = candidate && (<ValidatableController> candidate).rulesCustomizer !== undefined
-                    && (<ValidatableController> candidate).form !== undefined;
+                let isController: boolean = candidate && (<IValidatableController> candidate).rulesCustomizer !== undefined
+                    && (<IValidatableController> candidate).form !== undefined;
 
                 if (isController) {
                     return candidate;
