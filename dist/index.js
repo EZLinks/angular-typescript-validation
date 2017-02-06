@@ -1,8 +1,6 @@
 "use strict";
 var validationConfig_1 = require("./config/validationConfig");
 exports.ValidationConfig = validationConfig_1.ValidationConfig;
-var validatableController_1 = require("./controllers/validatableController");
-exports.ValidatableController = validatableController_1.ValidatableController;
 var validationCore_1 = require("./core/validationCore");
 exports.ValidationCore = validationCore_1.ValidationCore;
 var rulesCustomizer_1 = require("./customizer/rulesCustomizer");
@@ -19,5 +17,7 @@ var errorProcessor_1 = require("./utils/errorProcessor");
 exports.ErrorProcessor = errorProcessor_1.ErrorProcessor;
 var validationUtilities_1 = require("./utils/validationUtilities");
 exports.ValidationUtilities = validationUtilities_1.ValidationUtilities;
+var validationService_1 = require("./services/validationService");
+exports.ValidationService = validationService_1.ValidationService;
 
 //# sourceMappingURL=index.js.map

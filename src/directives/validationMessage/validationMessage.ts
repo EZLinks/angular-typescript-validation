@@ -1,7 +1,7 @@
 ﻿import 'angular';
 
 import { IValidationRule } from '../../interfaces/validationRule';
-import { ValidatableController } from '../../controllers/validatableController';
+import { IValidatableController } from '../../controllers/validatableController';
 import { InitValidationModuleProvider } from '../../init/initValidationModuleProvider';
 import { ValidationUtilities } from '../../utils/validationUtilities';
 import { ErrorProcessor } from '../../utils/errorProcessor';
@@ -61,7 +61,7 @@ export class ValidationMessageDirective implements ng.IDirective {
     public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
         let worker: DirectiveWorker = new DirectiveWorker();
-        let basicController: ValidatableController = ValidationUtilities.getController(scope.$parent);
+        let basicController: IValidatableController = ValidationUtilities.getController(scope.$parent);
         worker.initFields(scope, element, attrs, basicController);
         worker.watchError(scope);
     }
@@ -85,12 +85,12 @@ class DirectiveWorker {
      * @param ctrl - controller.
      * @returns {boolean}
      */
-    public initFields(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: ValidatableController): void {
+    public initFields(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: IValidatableController): void {
 
         this.element = element;
         this.fieldName = attrs['for'];
         this.form = ctrl.form;
-        this.formName = ctrl.formName();
+        this.formName = ctrl.formName;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
 
         if (!this.rules) {
