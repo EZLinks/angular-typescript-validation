@@ -93,7 +93,7 @@ var DirectiveWorker = (function () {
     DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl) {
         this.element = element;
         this.fieldName = attrs['for'];
-        this.form = ctrl.form;
+        this.form = scope.$parent[ctrl.formName];
         this.formName = ctrl.formName;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
         if (!this.rules) {

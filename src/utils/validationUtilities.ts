@@ -21,7 +21,7 @@ export class ValidationUtilities {
 
                 let candidate: any = scope[property];
                 let isController: boolean = candidate && (<IValidatableController> candidate).rulesCustomizer !== undefined
-                    && (<IValidatableController> candidate).form !== undefined;
+                    && (<IValidatableController> candidate).formName !== undefined;
 
                 if (isController) {
                     return candidate;

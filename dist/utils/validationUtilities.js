@@ -16,7 +16,7 @@ var ValidationUtilities = (function () {
             if (scope.hasOwnProperty(property)) {
                 var candidate = scope[property];
                 var isController = candidate && candidate.rulesCustomizer !== undefined
-                    && candidate.form !== undefined;
+                    && candidate.formName !== undefined;
                 if (isController) {
                     return candidate;
                 }

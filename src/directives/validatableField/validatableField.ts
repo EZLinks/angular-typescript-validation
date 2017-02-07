@@ -68,7 +68,7 @@ class DirectiveWorker {
         ctrl: IValidatableController): boolean {
 
         this.fieldName = attrs['name'];
-        this.form = ctrl.form;
+        this.form = scope[ctrl.formName];
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
 
         if (this.seqRules && this.seqRules.length) {

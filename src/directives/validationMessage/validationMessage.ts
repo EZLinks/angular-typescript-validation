@@ -89,7 +89,7 @@ class DirectiveWorker {
 
         this.element = element;
         this.fieldName = attrs['for'];
-        this.form = ctrl.form;
+        this.form = scope.$parent[ctrl.formName];
         this.formName = ctrl.formName;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
 

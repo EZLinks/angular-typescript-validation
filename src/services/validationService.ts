@@ -29,6 +29,13 @@ export interface IValidationService {
 export class ValidationService implements IValidationService {
 
     /**
+     * gets the controllers form object.
+     */
+    private get form(): ng.IFormController {
+        return this.scope[this.controller.formName];
+    };
+
+    /**
      * inits controller.
      * 
      * @param controller
@@ -47,7 +54,7 @@ export class ValidationService implements IValidationService {
      */
     public validate(entity: Object): Promise<boolean> {
 
-        ErrorProcessor.clearAllFormErrors(this.controller.form);
+        ErrorProcessor.clearAllFormErrors(this.form);
 
         return ValidationCore.validateEntity(entity,
             this.controller.rulesCustomizer,
@@ -55,7 +62,7 @@ export class ValidationService implements IValidationService {
 
                 if (!result) {
                     this.scope.$apply(() => {
-                        ErrorProcessor.setFieldError(rule.propertyName, rule.attribute, this.controller.form);
+                        ErrorProcessor.setFieldError(rule.propertyName, rule.attribute, this.form);
                     });
                 }
             });
@@ -67,7 +74,7 @@ export class ValidationService implements IValidationService {
     public addServerError = (fieldName: string, errorMesage: string) => {
 
         this.scope.$apply(() => {
-            ErrorProcessor.addServerFieldError(fieldName, errorMesage, this.controller.form);
+            ErrorProcessor.addServerFieldError(fieldName, errorMesage, this.form);
         });
     }
 }
