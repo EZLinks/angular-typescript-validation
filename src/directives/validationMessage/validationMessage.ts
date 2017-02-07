@@ -119,8 +119,7 @@ class DirectiveWorker {
                 if (newVal !== oldVal) {
                     InitValidationModuleProvider.config.fieldErrorHandler(!this.isFieldValid(), this.element, this.fieldName);
                 }
-            }, true
-        );
+            });
     }
 
     /**

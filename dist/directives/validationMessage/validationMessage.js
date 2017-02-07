@@ -117,7 +117,7 @@ var DirectiveWorker = (function () {
             if (newVal !== oldVal) {
                 initValidationModuleProvider_1.InitValidationModuleProvider.config.fieldErrorHandler(!_this.isFieldValid(), _this.element, _this.fieldName);
             }
-        }, true);
+        });
     };
     return DirectiveWorker;
 }());
