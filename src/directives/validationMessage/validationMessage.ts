@@ -30,7 +30,7 @@ export class ValidationMessageController {
 export class ValidationMessageDirective implements ng.IDirective {
 
     public restrict: string = 'E';
-    public scope: any = {};
+    public scope: any = { ctrl: '=' };
     public controller: any = ValidationMessageController;
     public controllerAs: string = 'vm';
     public replace: boolean = true;
@@ -58,10 +58,10 @@ export class ValidationMessageDirective implements ng.IDirective {
      * @param attrs
      * @param ctrl
      */
-    public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
+    public link(scope: any, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
         let worker: DirectiveWorker = new DirectiveWorker();
-        let basicController: IValidatableController = ValidationUtilities.getController(scope.$parent);
+        let basicController: IValidatableController = ValidationUtilities.getController(scope.ctrl);
         worker.initFields(scope, element, attrs, basicController);
         worker.watchError(scope);
     }
@@ -70,7 +70,6 @@ export class ValidationMessageDirective implements ng.IDirective {
 class DirectiveWorker {
 
     private fieldName: string;
-    private formName: string;
     private element: any;
     private form: ng.IFormController;
     private rules: IValidationRule[];
@@ -89,8 +88,7 @@ class DirectiveWorker {
 
         this.element = element;
         this.fieldName = attrs['for'];
-        this.form = scope.$parent[ctrl.formName];
-        this.formName = ctrl.formName;
+        this.form = ctrl.form;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
 
         if (!this.rules) {
@@ -113,7 +111,7 @@ class DirectiveWorker {
      */
     public watchError(scope: ng.IScope): void {
 
-        scope.$parent.$watch(`${this.formName}.$error.${this.fieldName}`,
+        scope.$watch(`ctrl.form.$error.${this.fieldName}`,
             (newVal: any, oldVal: any) => {
 
                 if (newVal !== oldVal) {

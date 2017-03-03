@@ -15,6 +15,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
 
     public restrict: string = 'A';
     public require: string = 'ngModel';
+    public scope: any = { validatableField: '=' };
 
     /**
      * creates a new instance of directive
@@ -31,12 +32,12 @@ export class ValidatableFieldDirective implements ng.IDirective {
      * @param attrs
      * @param ctrl
      */
-    public link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
+    public link(scope: any, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void {
 
         let worker: DirectiveWorker = new DirectiveWorker();
-        let basicController: IValidatableController = ValidationUtilities.getController(scope);
+        let basicController: IValidatableController = ValidationUtilities.getController(scope.validatableField);
         if (worker.initFields(scope, element, attrs, basicController)) {
-            worker.watchModel(scope, attrs);
+            worker.watchModel(scope);
         }
     }
 }
@@ -68,7 +69,7 @@ class DirectiveWorker {
         ctrl: IValidatableController): boolean {
 
         this.fieldName = attrs['name'];
-        this.form = scope[ctrl.formName];
+        this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
 
         if (this.seqRules && this.seqRules.length) {
@@ -84,9 +85,9 @@ class DirectiveWorker {
      * @param scope - scope
      * @param attr - element attributes
      */
-    public watchModel(scope: ng.IScope, attr: ng.IAttributes): void {
+    public watchModel(scope: ng.IScope): void {
 
-        scope.$watch(attr['ngModel'],
+        scope.$watch(`validatableField.model.${this.fieldName}`,
             (newVal: any, oldVal: any) => {
 
                 if (newVal !== oldVal) {

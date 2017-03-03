@@ -9,18 +9,13 @@ var ValidationUtilities = (function () {
     /**
      * tries to find controller in scope
      *
-     * @param scope
+     * @param candidate
      */
-    ValidationUtilities.getController = function (scope) {
-        for (var property in scope) {
-            if (scope.hasOwnProperty(property)) {
-                var candidate = scope[property];
-                var isController = candidate && candidate.rulesCustomizer !== undefined
-                    && candidate.formName !== undefined;
-                if (isController) {
-                    return candidate;
-                }
-            }
+    ValidationUtilities.getController = function (candidate) {
+        var isController = candidate && candidate.rulesCustomizer !== undefined
+            && candidate.form !== undefined;
+        if (isController) {
+            return candidate;
         }
         throw new Error('Cannot find controller candidate.');
     };
@@ -37,12 +32,13 @@ var ValidationUtilities = (function () {
      * gets property name from expression.
      */
     ValidationUtilities.fromExpression = function (func) {
-        var varExtractor = new RegExp('return (.*);');
+        var varExtractor = new RegExp('return ([^;]*)(?=(;|\\}))');
         var m = varExtractor.exec(func + '');
-        if (m && m.length === 2) {
+        if (m && m.length >= 2) {
             var parts = m[1].split('.');
             if (parts.length === 2) {
-                return parts[1];
+                var fieldName = parts[1];
+                return fieldName.replace(' ', '');
             }
         }
         throw new Error('Cannot get property name from expression.');

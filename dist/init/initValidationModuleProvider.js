@@ -14,7 +14,7 @@ var InitValidationModuleProvider = (function () {
         // init configuration
         this.configuration = new validationConfig_1.ValidationConfig();
         this.configuration.fieldErrorHandler = function (isError, element, fieldName) {
-            element.parents('.field').toggleClass('error', isError);
+            element.parents('form').find('[name=' + fieldName + ']').parents('.field').toggleClass('error', isError);
         };
         this.configuration.templateHtml = this.defaultTemplateHtml;
         this.configuration.validationTimoutMs = this.defaultTimeoutMs;
@@ -48,7 +48,7 @@ var InitValidationModuleProvider = (function () {
          * default messages template Html.
          */
         get: function () {
-            return "<div class=\"ui error message\" style=\"display: block;\" ng-show=\"vm.isFieldValid() === false\"> \n                <ul class=\"list\"> \n                <li ng-repeat=\"error in vm.errors()\" ng-show=\"vm.showError(error)\">{{ error.message }}</li>\n                </ul>\n                </div>";
+            return "<div class=\"ui error message\" style=\"display: block;\" ng-show=\"vm.isFieldValid() === false\"> \n                <ul class=\"list\"> \n                <li ng-repeat=\"error in vm.errors()\" ng-show=\"vm.showError(error)\">{{ error.message | translate }}</li>\n                </ul>\n                </div>";
         },
         enumerable: true,
         configurable: true

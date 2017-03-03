@@ -12,6 +12,7 @@ var ValidatableFieldDirective = (function () {
     function ValidatableFieldDirective() {
         this.restrict = 'A';
         this.require = 'ngModel';
+        this.scope = { validatableField: '=' };
     }
     /**
      * creates a new instance of directive
@@ -29,9 +30,9 @@ var ValidatableFieldDirective = (function () {
      */
     ValidatableFieldDirective.prototype.link = function (scope, element, attrs) {
         var worker = new DirectiveWorker();
-        var basicController = validationUtilities_1.ValidationUtilities.getController(scope);
+        var basicController = validationUtilities_1.ValidationUtilities.getController(scope.validatableField);
         if (worker.initFields(scope, element, attrs, basicController)) {
-            worker.watchModel(scope, attrs);
+            worker.watchModel(scope);
         }
     };
     return ValidatableFieldDirective;
@@ -55,7 +56,7 @@ var DirectiveWorker = (function () {
      */
     DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl) {
         this.fieldName = attrs['name'];
-        this.form = scope[ctrl.formName];
+        this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
         if (this.seqRules && this.seqRules.length) {
             return true;
@@ -68,9 +69,9 @@ var DirectiveWorker = (function () {
      * @param scope - scope
      * @param attr - element attributes
      */
-    DirectiveWorker.prototype.watchModel = function (scope, attr) {
+    DirectiveWorker.prototype.watchModel = function (scope) {
         var _this = this;
-        scope.$watch(attr['ngModel'], function (newVal, oldVal) {
+        scope.$watch("validatableField.model." + this.fieldName, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 errorProcessor_1.ErrorProcessor.clearFieldErrors(_this.fieldName, _this.form);
                 if (_this.timer) {

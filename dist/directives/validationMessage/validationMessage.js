@@ -23,7 +23,7 @@ var ValidationMessageDirective = (function () {
      */
     function ValidationMessageDirective() {
         this.restrict = 'E';
-        this.scope = {};
+        this.scope = { ctrl: '=' };
         this.controller = ValidationMessageController;
         this.controllerAs = 'vm';
         this.replace = true;
@@ -45,7 +45,7 @@ var ValidationMessageDirective = (function () {
      */
     ValidationMessageDirective.prototype.link = function (scope, element, attrs) {
         var worker = new DirectiveWorker();
-        var basicController = validationUtilities_1.ValidationUtilities.getController(scope.$parent);
+        var basicController = validationUtilities_1.ValidationUtilities.getController(scope.ctrl);
         worker.initFields(scope, element, attrs, basicController);
         worker.watchError(scope);
     };
@@ -93,8 +93,7 @@ var DirectiveWorker = (function () {
     DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl) {
         this.element = element;
         this.fieldName = attrs['for'];
-        this.form = scope.$parent[ctrl.formName];
-        this.formName = ctrl.formName;
+        this.form = ctrl.form;
         this.rules = ctrl.rulesCustomizer.rulesDictionary[this.fieldName];
         if (!this.rules) {
             this.rules = [];
@@ -113,7 +112,7 @@ var DirectiveWorker = (function () {
      */
     DirectiveWorker.prototype.watchError = function (scope) {
         var _this = this;
-        scope.$parent.$watch(this.formName + ".$error." + this.fieldName, function (newVal, oldVal) {
+        scope.$watch("ctrl.form.$error." + this.fieldName, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 initValidationModuleProvider_1.InitValidationModuleProvider.config.fieldErrorHandler(!_this.isFieldValid(), _this.element, _this.fieldName);
             }

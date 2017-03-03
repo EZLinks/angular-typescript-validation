@@ -8,9 +8,9 @@ import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
 export interface IValidatableController {
 
     /**
-     * validation form name.
+     * validation form.
      */
-    formName: string;
+    form: any;
 
     /**
      * rulez of controller.

@@ -12,21 +12,15 @@ export class ValidationUtilities {
     /**
      * tries to find controller in scope
      * 
-     * @param scope
+     * @param candidate
      */
-    public static getController(scope: ng.IScope): IValidatableController {
+    public static getController(candidate: any): IValidatableController {
 
-        for (var property in scope) {
-            if (scope.hasOwnProperty(property)) {
-
-                let candidate: any = scope[property];
-                let isController: boolean = candidate && (<IValidatableController> candidate).rulesCustomizer !== undefined
-                    && (<IValidatableController> candidate).formName !== undefined;
+        let isController: boolean = candidate && (<IValidatableController> candidate).rulesCustomizer !== undefined
+                    && (<IValidatableController> candidate).form !== undefined;
 
                 if (isController) {
                     return candidate;
-                }
-            }
         }
 
         throw new Error('Cannot find controller candidate.');

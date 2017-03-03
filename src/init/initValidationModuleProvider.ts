@@ -18,7 +18,7 @@ export class InitValidationModuleProvider {
         this.configuration = new ValidationConfig();
 
         this.configuration.fieldErrorHandler = (isError: boolean, element: any, fieldName: string) => {
-            element.parents('.field').toggleClass('error', isError);
+            element.parents('form').find('[name=' + fieldName + ']').parents('.field').toggleClass('error', isError);
         };
 
         this.configuration.templateHtml = this.defaultTemplateHtml;
@@ -57,7 +57,7 @@ export class InitValidationModuleProvider {
     private static get defaultTemplateHtml(): string {
         return `<div class="ui error message" style="display: block;" ng-show="vm.isFieldValid() === false"> 
                 <ul class="list"> 
-                <li ng-repeat="error in vm.errors()" ng-show="vm.showError(error)">{{ error.message }}</li>
+                <li ng-repeat="error in vm.errors()" ng-show="vm.showError(error)">{{ error.message | translate }}</li>
                 </ul>
                 </div>`;
     }
