@@ -4,6 +4,7 @@ import {ValidationCore} from './src/core/validationCore';
 import {RulesCustomizer} from './src/customizer/rulesCustomizer';
 import {ValidatableFieldDirective} from './src/directives/validatableField/validatableField';
 import {ValidationMessageDirective} from './src/directives/validationMessage/validationMessage';
+import {ValidationSummaryDirective} from './src/directives/validationSummary/validationSummary';
 import {InitValidationModuleProvider} from './src/init/initValidationModuleProvider';
 import {IMessage} from './src/interfaces/message';
 import {IRulesCustomizer} from './src/interfaces/rulesCustomizer';
@@ -23,6 +24,7 @@ export {
     RulesCustomizer,
     ValidatableFieldDirective,
     ValidationMessageDirective,
+    ValidationSummaryDirective,
     InitValidationModuleProvider,
     IMessage,
     IRulesCustomizer,

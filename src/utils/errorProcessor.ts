@@ -22,6 +22,10 @@ export class ErrorProcessor {
 
         form.$setValidity(fieldName, false, form);
 
+        if (!form.$error[fieldName]) {
+            return;
+        }
+
         if (!form.$error[fieldName][this.validationAttr]) {
             form.$error[fieldName][this.validationAttr] = {};
         }

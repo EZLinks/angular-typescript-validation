@@ -16,4 +16,9 @@ export class ValidationConfig {
      * template html for validation messages directive. 
      */
     public templateHtml: string;
+
+    /**
+     * template html for validation summary directive. 
+     */
+    public summaryTemplateHtml: string;
 }

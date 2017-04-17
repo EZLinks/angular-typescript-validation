@@ -47,7 +47,6 @@ var ValidationMessageDirective = (function () {
         var worker = new DirectiveWorker();
         var basicController = validationUtilities_1.ValidationUtilities.getController(scope.ctrl);
         worker.initFields(scope, element, attrs, basicController);
-        worker.watchError(scope);
     };
     return ValidationMessageDirective;
 }());
@@ -104,19 +103,6 @@ var DirectiveWorker = (function () {
         if (!this.fieldName) {
             throw new Error('Empty field name.');
         }
-    };
-    /**
-     * makes watch to apply error to field if needed.
-     *
-     * @param scope
-     */
-    DirectiveWorker.prototype.watchError = function (scope) {
-        var _this = this;
-        scope.$watch("ctrl.form.$error." + this.fieldName, function (newVal, oldVal) {
-            if (newVal !== oldVal) {
-                initValidationModuleProvider_1.InitValidationModuleProvider.config.fieldErrorHandler(!_this.isFieldValid(), _this.element, _this.fieldName);
-            }
-        });
     };
     return DirectiveWorker;
 }());

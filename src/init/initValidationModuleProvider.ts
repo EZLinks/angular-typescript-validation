@@ -6,9 +6,7 @@ import { ValidationConfig } from '../config/validationConfig';
  * for module init purposes.
  */
 export class InitValidationModuleProvider {
-
-    private static configuration: ValidationConfig = InitValidationModuleProvider.init();
-
+    
     /**
      * inits validation module.
      */
@@ -22,17 +20,20 @@ export class InitValidationModuleProvider {
         };
 
         this.configuration.templateHtml = this.defaultTemplateHtml;
+        this.configuration.summaryTemplateHtml = this.defaultSummaryTemplateHtml;
         this.configuration.validationTimoutMs = this.defaultTimeoutMs;
 
         if (config) {
 
             this.setIfDefined(this.configuration, 'fieldErrorHandler', config.fieldErrorHandler);
-            this.setIfDefined(this.configuration, 'templateUrl', config.templateHtml);
+            this.setIfDefined(this.configuration, 'templateHtml', config.templateHtml);
             this.setIfDefined(this.configuration, 'validationTimoutMs', config.validationTimoutMs);
         }
 
         return this.configuration;
     }
+
+    private static configuration: ValidationConfig = InitValidationModuleProvider.init();
 
     /**
      * sets value to object if value is defined.
@@ -60,6 +61,17 @@ export class InitValidationModuleProvider {
                 <li ng-repeat="error in vm.errors()" ng-show="vm.showError(error)">{{ error.message | translate }}</li>
                 </ul>
                 </div>`;
+    }
+
+    /**
+     * default summary template Html.
+     */
+    private static get defaultSummaryTemplateHtml(): string {
+        return `<div ng-show="vs.hasErrors()" style="display: block;" class="ui error message">
+                <ul class="list">
+                <li ng-repeat="error in vs.errors" ng-show="vs.showError(error)">{{ error.message | translate }}</li>
+                </ul>
+                </div>`;                           
     }
 
     /**

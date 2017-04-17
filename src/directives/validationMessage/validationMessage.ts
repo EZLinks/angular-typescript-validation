@@ -63,7 +63,6 @@ export class ValidationMessageDirective implements ng.IDirective {
         let worker: DirectiveWorker = new DirectiveWorker();
         let basicController: IValidatableController = ValidationUtilities.getController(scope.ctrl);
         worker.initFields(scope, element, attrs, basicController);
-        worker.watchError(scope);
     }
 }
 
@@ -102,22 +101,6 @@ class DirectiveWorker {
         if (!this.fieldName) {
             throw new Error('Empty field name.');
         }
-    }
-
-    /**
-     * makes watch to apply error to field if needed.
-     * 
-     * @param scope
-     */
-    public watchError(scope: ng.IScope): void {
-
-        scope.$watch(`ctrl.form.$error.${this.fieldName}`,
-            (newVal: any, oldVal: any) => {
-
-                if (newVal !== oldVal) {
-                    InitValidationModuleProvider.config.fieldErrorHandler(!this.isFieldValid(), this.element, this.fieldName);
-                }
-            });
     }
 
     /**

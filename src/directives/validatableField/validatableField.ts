@@ -38,6 +38,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
         let basicController: IValidatableController = ValidationUtilities.getController(scope.validatableField);
         if (worker.initFields(scope, element, attrs, basicController)) {
             worker.watchModel(scope);
+            worker.watchError(scope);
         }
     }
 }
@@ -47,6 +48,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
  */
 class DirectiveWorker {
 
+    private element: any;
     private fieldName: string;
     private seqRules: Array<Array<IValidationRule>>;
     private form: ng.IFormController;
@@ -68,6 +70,7 @@ class DirectiveWorker {
         attrs: ng.IAttributes,
         ctrl: IValidatableController): boolean {
 
+        this.element = element;    
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
@@ -116,6 +119,23 @@ class DirectiveWorker {
                                 });
                         },
                         InitValidationModuleProvider.config.validationTimoutMs);
+                }
+            });
+    }
+
+    /**
+     * makes watch to apply error to field if needed.
+     * 
+     * @param scope
+     */
+    public watchError(scope: ng.IScope): void {
+
+        scope.$watch(`validatableField.form.$error.${this.fieldName}`,
+            (newVal: any, oldVal: any) => {
+
+                if (newVal !== oldVal) {
+                    let isFieldValid = ErrorProcessor.isFieldValid(this.fieldName, this.form);
+                    InitValidationModuleProvider.config.fieldErrorHandler(!isFieldValid, this.element, this.fieldName);
                 }
             });
     }

@@ -33,6 +33,7 @@ var ValidatableFieldDirective = (function () {
         var basicController = validationUtilities_1.ValidationUtilities.getController(scope.validatableField);
         if (worker.initFields(scope, element, attrs, basicController)) {
             worker.watchModel(scope);
+            worker.watchError(scope);
         }
     };
     return ValidatableFieldDirective;
@@ -55,6 +56,7 @@ var DirectiveWorker = (function () {
      * @returns {boolean}
      */
     DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl) {
+        this.element = element;
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
@@ -88,6 +90,20 @@ var DirectiveWorker = (function () {
                         }
                     });
                 }, initValidationModuleProvider_1.InitValidationModuleProvider.config.validationTimoutMs);
+            }
+        });
+    };
+    /**
+     * makes watch to apply error to field if needed.
+     *
+     * @param scope
+     */
+    DirectiveWorker.prototype.watchError = function (scope) {
+        var _this = this;
+        scope.$watch("validatableField.form.$error." + this.fieldName, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                var isFieldValid = errorProcessor_1.ErrorProcessor.isFieldValid(_this.fieldName, _this.form);
+                initValidationModuleProvider_1.InitValidationModuleProvider.config.fieldErrorHandler(!isFieldValid, _this.element, _this.fieldName);
             }
         });
     };
