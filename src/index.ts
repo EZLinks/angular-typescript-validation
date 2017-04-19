@@ -15,6 +15,7 @@ import {ErrorProcessor} from './utils/errorProcessor';
 import {ValidationUtilities} from './utils/validationUtilities';
 import {IValidationService} from './services/validationService';
 import {ValidationService} from './services/validationService';
+import {RequiredValidationRule} from './validationRules/requiredValidationRule';
 
 // export everything that you want to access directly in TS code outside the package
 export {
@@ -34,5 +35,6 @@ export {
     ErrorProcessor,
     ValidationUtilities,
     IValidationService,
-    ValidationService
+    ValidationService,
+    RequiredValidationRule
 }
