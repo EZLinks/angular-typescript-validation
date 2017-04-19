@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require("angular");
 var initValidationModuleProvider_1 = require("../../init/initValidationModuleProvider");
 var validationUtilities_1 = require("../../utils/validationUtilities");

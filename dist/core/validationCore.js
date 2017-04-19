@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require("angular");
 var es6_promise_1 = require("es6-promise");
 /**

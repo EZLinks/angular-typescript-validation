@@ -79,7 +79,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param key
      * @param rule
      */
-    protected addRule(key: string, rule: IValidationRule): void {
+    public addRule(key: string, rule: IValidationRule): void {
 
         if (!this.rulesMap[key]) {
             this.rulesMap[key] = [];

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var es6_promise_1 = require("es6-promise");
 /**
  * validation rule for max length.

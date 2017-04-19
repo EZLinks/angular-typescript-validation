@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require("angular");
 var errorProcessor_1 = require("../utils/errorProcessor");
 var validationCore_1 = require("../core/validationCore");

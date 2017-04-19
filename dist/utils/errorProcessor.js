@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require("angular");
 var serverError_1 = require("../models/serverError");
 /**
