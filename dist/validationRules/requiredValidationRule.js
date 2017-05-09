@@ -31,7 +31,7 @@ var RequiredValidationRule = (function () {
      *
      * @param value
      */
-    RequiredValidationRule.prototype.validate = function (value) {
+    RequiredValidationRule.prototype.validate = function (entity, value) {
         var promise = new es6_promise_1.Promise(function (resolve) {
             var notDefined = false;
             if (value === null || value === undefined || value === '') {

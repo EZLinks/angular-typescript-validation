@@ -1,4 +1,4 @@
-﻿import {Promise} from 'es6-promise';
+﻿import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
 /**
@@ -27,7 +27,7 @@ export class MaxLenValidationRule implements IValidationRule {
      * validate action.
      * @param value
      */
-    public validate(value: any): Promise<boolean> {
+    public validate(entity: any, value: any): Promise<boolean> {
         let promise: Promise<boolean> = new Promise((resolve) => {
 
             resolve(value.length <= this.data);

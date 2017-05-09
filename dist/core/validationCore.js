@@ -34,7 +34,7 @@ var ValidationCore = (function () {
         var _loop_1 = function (i) {
             var rule = rules[i];
             var value = entity[rule.propertyName];
-            var promise = rule.validate(value)
+            var promise = rule.validate(entity, value)
                 .then(function (result) {
                 handleRuleResult(rule, result);
                 if (!result) {

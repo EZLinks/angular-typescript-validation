@@ -33,7 +33,7 @@ var MinLenValidationRule = (function () {
      *
      * @param value
      */
-    MinLenValidationRule.prototype.validate = function (value) {
+    MinLenValidationRule.prototype.validate = function (entity, value) {
         var _this = this;
         var promise = new es6_promise_1.Promise(function (resolve) {
             resolve(value.length >= _this.data);

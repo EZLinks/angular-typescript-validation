@@ -1,5 +1,5 @@
 ﻿import 'angular';
-import {Promise} from 'es6-promise';
+import { Promise } from 'es6-promise';
 
 import { IValidationRule } from '../interfaces/validationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
@@ -47,7 +47,7 @@ export class ValidationCore {
             let rule: IValidationRule = rules[i];
             let value: any = entity[rule.propertyName];
 
-            let promise: Promise<boolean> = rule.validate(value)
+            let promise: Promise<boolean> = rule.validate(entity, value)
                 .then(result => {
 
                     handleRuleResult(rule, result);
@@ -65,7 +65,7 @@ export class ValidationCore {
         return Promise.all(promises)
             .then(() => {
 
-               sequence++;
+                sequence++;
 
                 if (allValid && sequence < seqRules.length) {
                     return this.validateRules(entity, seqRules, sequence, handleRuleResult);

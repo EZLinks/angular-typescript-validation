@@ -1,4 +1,4 @@
-﻿import {Promise} from 'es6-promise';
+﻿import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
 /**
@@ -11,7 +11,7 @@ export class RealTimeServerValidationRule implements IValidationRule {
      * @param validationCall
      * @param message
      */
-    constructor(public propertyName: string, private validationCall: (value: any) => Promise<boolean>, public message: string) {
+    constructor(public propertyName: string, private validationCall: (entity: any, value: any) => Promise<boolean>, public message: string) {
     }
 
     /**
@@ -27,7 +27,7 @@ export class RealTimeServerValidationRule implements IValidationRule {
      * validate action
      * @param value
      */
-    public validate(value: any): Promise<boolean> {
-        return this.validationCall(value);
+    public validate(entity: any, value: any): Promise<boolean> {
+        return this.validationCall(entity, value);
     }
 }

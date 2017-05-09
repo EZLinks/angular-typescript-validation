@@ -1,4 +1,4 @@
-﻿import {Promise} from 'es6-promise';
+﻿import { Promise } from 'es6-promise';
 
 import { IMessage } from './message';
 
@@ -20,8 +20,9 @@ export interface IValidationRule extends IMessage {
     /**
      * validate action.
      * 
+     * @param entity - entity to be validated.
      * @param value - value to be validated.
      * @returns {Promise<boolean>}
      */
-    validate(value: any): Promise<boolean>;
+    validate(entity: any, value: any): Promise<boolean>;
 }

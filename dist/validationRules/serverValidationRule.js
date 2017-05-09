@@ -31,8 +31,8 @@ var RealTimeServerValidationRule = (function () {
      * validate action
      * @param value
      */
-    RealTimeServerValidationRule.prototype.validate = function (value) {
-        return this.validationCall(value);
+    RealTimeServerValidationRule.prototype.validate = function (entity, value) {
+        return this.validationCall(entity, value);
     };
     return RealTimeServerValidationRule;
 }());

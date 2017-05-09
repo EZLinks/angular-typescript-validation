@@ -22,5 +22,7 @@ var validationUtilities_1 = require("./utils/validationUtilities");
 exports.ValidationUtilities = validationUtilities_1.ValidationUtilities;
 var validationService_1 = require("./services/validationService");
 exports.ValidationService = validationService_1.ValidationService;
+var requiredValidationRule_1 = require("./validationRules/requiredValidationRule");
+exports.RequiredValidationRule = requiredValidationRule_1.RequiredValidationRule;
 
 //# sourceMappingURL=index.js.map
