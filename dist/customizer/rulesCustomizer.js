@@ -5,6 +5,7 @@ var serverValidationRule_1 = require("../validationRules/serverValidationRule");
 var minLenValidationRule_1 = require("../validationRules/minLenValidationRule");
 var maxLenValidationRule_1 = require("../validationRules/maxLenValidationRule");
 var validationUtilities_1 = require("../utils/validationUtilities");
+var clientValidationRule_1 = require("../validationRules/clientValidationRule");
 /**
  * helps to define validation rules for models.
  */
@@ -65,6 +66,14 @@ var RulesCustomizer = (function () {
     RulesCustomizer.prototype.serverValidation = function (func, validationCall, message) {
         var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
         var rule = new serverValidationRule_1.RealTimeServerValidationRule(key, validationCall, message);
+        this.addRule(key, rule);
+    };
+    /**
+     * client custom validation rule.
+     */
+    RulesCustomizer.prototype.clientValidation = function (func, validationCall, message) {
+        var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
+        var rule = new clientValidationRule_1.ClientValidationRule(key, validationCall, message);
         this.addRule(key, rule);
     };
     /**

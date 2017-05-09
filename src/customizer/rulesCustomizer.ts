@@ -1,4 +1,4 @@
-﻿import {Promise} from 'es6-promise';
+﻿import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 import { RequiredValidationRule } from '../validationRules/requiredValidationRule';
 import { RealTimeServerValidationRule } from '../validationRules/serverValidationRule';
@@ -6,6 +6,7 @@ import { MinLenValidationRule } from '../validationRules/minLenValidationRule';
 import { MaxLenValidationRule } from '../validationRules/maxLenValidationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
 import { ValidationUtilities } from '../utils/validationUtilities';
+import { ClientValidationRule } from '../validationRules/clientValidationRule';
 
 /**
  * helps to define validation rules for models.
@@ -67,9 +68,18 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
      * @param validationCall
      * @param message
      */
-    public serverValidation(func: (obj: T) => void, validationCall: (value: any) => Promise<boolean>, message: string): void {
+    public serverValidation(func: (obj: T) => void, validationCall: (entity: any, value: any) => Promise<boolean>, message: string): void {
         let key: string = ValidationUtilities.fromExpression<T>(func);
         let rule: IValidationRule = new RealTimeServerValidationRule(key, validationCall, message);
+        this.addRule(key, rule);
+    }
+
+    /**
+     * client custom validation rule.
+     */
+    public clientValidation(func: (obj: T) => void, validationCall: (entity: any, value: any) => boolean, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
+        let rule: IValidationRule = new ClientValidationRule(key, validationCall, message);
         this.addRule(key, rule);
     }
 
