@@ -61,6 +61,7 @@ var DirectiveWorker = (function () {
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
+        this.item = ctrl.item;
         if (this.seqRules && this.seqRules.length) {
             return true;
         }
@@ -81,9 +82,7 @@ var DirectiveWorker = (function () {
                     clearTimeout(_this.timer);
                 }
                 _this.timer = setTimeout(function () {
-                    var entity = {};
-                    entity[_this.fieldName] = newVal;
-                    validationCore_1.ValidationCore.validateRules(entity, _this.seqRules, 0, function (rule, result) {
+                    validationCore_1.ValidationCore.validateRules(_this.item, _this.seqRules, 0, function (rule, result) {
                         if (!result) {
                             scope.$apply(function () {
                                 errorProcessor_1.ErrorProcessor.setFieldError(_this.fieldName, rule.attribute, _this.form);

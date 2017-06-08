@@ -52,6 +52,7 @@ class DirectiveWorker {
     private fieldName: string;
     private seqRules: Array<Array<IValidationRule>>;
     private form: ng.IFormController;
+    private item: any;
 
     private timer: any = null;
 
@@ -74,6 +75,7 @@ class DirectiveWorker {
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
+        this.item = ctrl.item;
 
         if (this.seqRules && this.seqRules.length) {
             return true;
@@ -101,12 +103,9 @@ class DirectiveWorker {
                         clearTimeout(this.timer);
                     }
 
-                    this.timer = setTimeout(() => {
+                    this.timer = setTimeout(() => {                            
 
-                            let entity: Object = {};
-                            entity[this.fieldName] = newVal;
-
-                            ValidationCore.validateRules(entity,
+                            ValidationCore.validateRules(this.item,
                                 this.seqRules,
                                 0,
                                 (rule: IValidationRule, result: boolean) => {

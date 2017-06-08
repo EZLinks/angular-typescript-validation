@@ -11,6 +11,11 @@ export interface IValidatableController {
      * validation form.
      */
     form: any;
+    
+    /**
+     * the item to validate.
+     */
+    item: any;
 
     /**
      * rulez of controller.
