@@ -29,8 +29,7 @@
     "angular": "1.5.5",
     "es6-promise": "^4.0.5",
     "es6-shim": "^0.35.2",
-    "jquery": "2.2.4",
-    "validator": "^7.0.0"
+    "jquery": "2.2.4"
   },
   "devDependencies": {
     "@types/angular": "^1.6.1",

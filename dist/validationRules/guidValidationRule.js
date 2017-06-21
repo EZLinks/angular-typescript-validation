@@ -1,7 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var es6_promise_1 = require("es6-promise");
-var isUUID_1 = require("validator/lib/isUUID");
 /**
  * rule for required.
  */
@@ -36,7 +34,9 @@ var GuidValidationRule = (function () {
         var promise = new es6_promise_1.Promise(function (resolve) {
             var isValueDefined = !!value;
             var isValueNotEmptyGuid = value !== '00000000-0000-0000-0000-000000000000';
-            var isValidGuid = isUUID_1.isUUID(value);
+            // https://stackoverflow.com/a/7905992
+            var regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F‌​]{4}-[0-9a-fA-F]{12}‌​\}?$/;
+            var isValidGuid = value.match(regex);
             resolve(isValueDefined && isValueNotEmptyGuid && isValidGuid);
         });
         return promise;
