@@ -16,6 +16,9 @@ import {ValidationUtilities} from './utils/validationUtilities';
 import {IValidationService} from './services/validationService';
 import {ValidationService} from './services/validationService';
 import {RequiredValidationRule} from './validationRules/requiredValidationRule';
+import {EmailValidationRule} from './validationRules/emailValidationRule';
+import {GuidValidationRule} from './validationRules/guidValidationRule';
+import {PhoneValidationRule} from './validationRules/phoneValidationRule';
 
 // export everything that you want to access directly in TS code outside the package
 export {
@@ -36,5 +39,8 @@ export {
     ValidationUtilities,
     IValidationService,
     ValidationService,
-    RequiredValidationRule
+    RequiredValidationRule,
+    EmailValidationRule,
+    GuidValidationRule,
+    PhoneValidationRule
 }

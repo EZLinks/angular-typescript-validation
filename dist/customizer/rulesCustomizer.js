@@ -4,6 +4,9 @@ var requiredValidationRule_1 = require("../validationRules/requiredValidationRul
 var serverValidationRule_1 = require("../validationRules/serverValidationRule");
 var minLenValidationRule_1 = require("../validationRules/minLenValidationRule");
 var maxLenValidationRule_1 = require("../validationRules/maxLenValidationRule");
+var phoneValidationRule_1 = require("../validationRules/phoneValidationRule");
+var emailValidationRule_1 = require("../validationRules/emailValidationRule");
+var guidValidationRule_1 = require("../validationRules/guidValidationRule");
 var validationUtilities_1 = require("../utils/validationUtilities");
 var clientValidationRule_1 = require("../validationRules/clientValidationRule");
 /**
@@ -54,6 +57,30 @@ var RulesCustomizer = (function () {
     RulesCustomizer.prototype.minlen = function (func, value, message) {
         var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
         var rule = new minLenValidationRule_1.MinLenValidationRule(key, value, message);
+        this.addRule(key, rule);
+    };
+    /**
+     * email validation rule
+     */
+    RulesCustomizer.prototype.email = function (func, message) {
+        var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
+        var rule = new emailValidationRule_1.EmailValidationRule(key, message);
+        this.addRule(key, rule);
+    };
+    /**
+     * phone validation rule
+     */
+    RulesCustomizer.prototype.phone = function (func, message) {
+        var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
+        var rule = new phoneValidationRule_1.PhoneValidationRule(key, message);
+        this.addRule(key, rule);
+    };
+    /**
+     * guid validation rule
+     */
+    RulesCustomizer.prototype.guid = function (func, message) {
+        var key = validationUtilities_1.ValidationUtilities.fromExpression(func);
+        var rule = new guidValidationRule_1.GuidValidationRule(key, message);
         this.addRule(key, rule);
     };
     /**

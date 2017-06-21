@@ -24,5 +24,11 @@ var validationService_1 = require("./services/validationService");
 exports.ValidationService = validationService_1.ValidationService;
 var requiredValidationRule_1 = require("./validationRules/requiredValidationRule");
 exports.RequiredValidationRule = requiredValidationRule_1.RequiredValidationRule;
+var emailValidationRule_1 = require("./validationRules/emailValidationRule");
+exports.EmailValidationRule = emailValidationRule_1.EmailValidationRule;
+var guidValidationRule_1 = require("./validationRules/guidValidationRule");
+exports.GuidValidationRule = guidValidationRule_1.GuidValidationRule;
+var phoneValidationRule_1 = require("./validationRules/phoneValidationRule");
+exports.PhoneValidationRule = phoneValidationRule_1.PhoneValidationRule;
 
 //# sourceMappingURL=index.js.map
