@@ -1,8 +1,6 @@
 import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
-import { isUUID } from 'validator/lib/isUUID';
-
 /**
  * rule for required.
  */
@@ -35,7 +33,9 @@ export class GuidValidationRule implements IValidationRule {
             let isValueDefined = !!value;
             let isValueNotEmptyGuid = value !== '00000000-0000-0000-0000-000000000000';
 
-            let isValidGuid = isUUID(value);
+            // https://stackoverflow.com/a/7905992
+            let regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F‌​]{4}-[0-9a-fA-F]{12}‌​\}?$/;
+            let isValidGuid = value.match(regex);
 
             resolve(isValueDefined && isValueNotEmptyGuid && isValidGuid);
         });

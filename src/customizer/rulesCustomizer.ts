@@ -4,6 +4,9 @@ import { RequiredValidationRule } from '../validationRules/requiredValidationRul
 import { RealTimeServerValidationRule } from '../validationRules/serverValidationRule';
 import { MinLenValidationRule } from '../validationRules/minLenValidationRule';
 import { MaxLenValidationRule } from '../validationRules/maxLenValidationRule';
+import { PhoneValidationRule } from '../validationRules/phoneValidationRule';
+import { EmailValidationRule } from '../validationRules/emailValidationRule';
+import { GuidValidationRule } from '../validationRules/guidValidationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
 import { ValidationUtilities } from '../utils/validationUtilities';
 import { ClientValidationRule } from '../validationRules/clientValidationRule';
@@ -15,7 +18,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * inits rules customizer.
-     * 
+     *
      * @param rulesMap
      */
     constructor(
@@ -25,7 +28,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * makes field required.
-     * 
+     *
      * @param keyFunc
      * @param message
      */
@@ -37,7 +40,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * max length valudation rule
-     * 
+     *
      * @param keyFunc
      * @param value
      * @param message
@@ -50,7 +53,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * min length validation rule
-     * 
+     *
      * @param keyFunc
      * @param value
      * @param message
@@ -62,8 +65,35 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
     }
 
     /**
+     * email validation rule
+     */
+    public email(func: (obj: T) => void, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
+        let rule: IValidationRule = new EmailValidationRule(key, message);
+        this.addRule(key, rule);
+    }
+
+    /**
+     * phone validation rule
+     */
+    public phone(func: (obj: T) => void, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
+        let rule: IValidationRule = new PhoneValidationRule(key, message);
+        this.addRule(key, rule);
+    }
+
+    /**
+     * guid validation rule
+     */
+    public guid(func: (obj: T) => void, message: string): void {
+        let key: string = ValidationUtilities.fromExpression<T>(func);
+        let rule: IValidationRule = new GuidValidationRule(key, message);
+        this.addRule(key, rule);
+    }
+
+    /**
      * sets real time validation of the field.
-     * 
+     *
      * @param keyFunc
      * @param validationCall
      * @param message
@@ -85,7 +115,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * adds validation rule to the dictionary.
-     * 
+     *
      * @param key
      * @param rule
      */
@@ -126,7 +156,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * gets all validation rules.
-     * 
+     *
      * @returns {Map<string, IValidationRule[]>}
      */
     public get rulesDictionary(): Map<string, IValidationRule[]> {
@@ -135,7 +165,7 @@ export class RulesCustomizer<T extends Object> implements IRulesCustomizer {
 
     /**
      * get rules sequence.
-     * 
+     *
      * @returns {Array<Array<IValidationRule>>}
      */
     public get rules(): Array<Array<IValidationRule>> {
