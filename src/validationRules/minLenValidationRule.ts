@@ -1,4 +1,3 @@
-﻿import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
 /**
@@ -8,7 +7,7 @@ export class MinLenValidationRule implements IValidationRule {
 
     /**
      * inits rule.
-     * 
+     *
      * @param data
      * @param message
      */
@@ -17,8 +16,8 @@ export class MinLenValidationRule implements IValidationRule {
 
     /**
      * action key
-     * 
-     * @returns {string} 
+     *
+     * @returns {string}
      */
     public get attribute(): string {
         return 'minlen';
@@ -26,7 +25,7 @@ export class MinLenValidationRule implements IValidationRule {
 
     /**
      * validation action
-     * 
+     *
      * @param value
      */
     public validate(entity: any, value: any): Promise<boolean> {

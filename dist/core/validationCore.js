@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("angular");
-var es6_promise_1 = require("es6-promise");
 /**
  * base methods for validation purposes.
  */
@@ -47,7 +46,7 @@ var ValidationCore = (function () {
         for (var i = 0; i < rules.length; i++) {
             _loop_1(i);
         }
-        return es6_promise_1.Promise.all(promises)
+        return Promise.all(promises)
             .then(function () {
             sequence++;
             if (allValid && sequence < seqRules.length) {

@@ -75,9 +75,9 @@ var InitValidationModuleProvider = (function () {
         enumerable: true,
         configurable: true
     });
+    InitValidationModuleProvider.configuration = InitValidationModuleProvider.init();
     return InitValidationModuleProvider;
 }());
-InitValidationModuleProvider.configuration = InitValidationModuleProvider.init();
 exports.InitValidationModuleProvider = InitValidationModuleProvider;
 
 //# sourceMappingURL=initValidationModuleProvider.js.map

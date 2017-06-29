@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var validationConfig_1 = require("./config/validationConfig");
 exports.ValidationConfig = validationConfig_1.ValidationConfig;
 var validationCore_1 = require("./core/validationCore");

@@ -26,15 +26,11 @@
   },
   "homepage": "https://github.com/EZLinks/angular-typescript-validation#readme",
   "dependencies": {
-    "angular": "1.5.5",
-    "es6-promise": "^4.0.5",
-    "es6-shim": "^0.35.2",
+    "angular": "1.6.3",
     "jquery": "2.2.4"
   },
   "devDependencies": {
     "@types/angular": "^1.6.1",
-    "@types/es6-promise": "0.0.32",
-    "@types/es6-shim": "^0.31.32",
     "@types/node": "^7.0.0",
     "del": "^2.0.2",
     "dts-generator": "^2.0.0",

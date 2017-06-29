@@ -1,4 +1,3 @@
-﻿import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
 /**
@@ -7,7 +6,7 @@ import { IValidationRule } from '../interfaces/validationRule';
 export class RealTimeServerValidationRule implements IValidationRule {
     /**
      * inits rule
-     * 
+     *
      * @param validationCall
      * @param message
      */
@@ -16,8 +15,8 @@ export class RealTimeServerValidationRule implements IValidationRule {
 
     /**
      * action key
-     * 
-     * @returns {string} 
+     *
+     * @returns {string}
      */
     public get attribute(): string {
         return 'rtServerError';

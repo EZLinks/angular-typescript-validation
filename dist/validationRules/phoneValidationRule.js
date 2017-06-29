@@ -1,5 +1,5 @@
 "use strict";
-var es6_promise_1 = require("es6-promise");
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for required.
  */
@@ -31,7 +31,7 @@ var PhoneValidationRule = (function () {
      * @param value
      */
     PhoneValidationRule.prototype.validate = function (entity, value) {
-        var promise = new es6_promise_1.Promise(function (resolve) {
+        var promise = new Promise(function (resolve) {
             // https://stackoverflow.com/a/123666
             var regex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
             resolve(value.match(regex));
