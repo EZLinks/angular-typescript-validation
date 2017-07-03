@@ -1,4 +1,3 @@
-import { Promise } from 'es6-promise';
 import { IValidationRule } from '../interfaces/validationRule';
 
 /**
@@ -8,7 +7,7 @@ export class ClientValidationRule implements IValidationRule {
 
     /**
      * inits rule
-     * 
+     *
      * @param validationCall
      * @param message
      */
@@ -17,8 +16,8 @@ export class ClientValidationRule implements IValidationRule {
 
     /**
      * action key
-     * 
-     * @returns {string} 
+     *
+     * @returns {string}
      */
     public get attribute(): string {
         return 'clientCustom';

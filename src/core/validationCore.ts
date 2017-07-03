@@ -1,5 +1,4 @@
 ﻿import 'angular';
-import { Promise } from 'es6-promise';
 
 import { IValidationRule } from '../interfaces/validationRule';
 import { IRulesCustomizer } from '../interfaces/rulesCustomizer';
@@ -11,7 +10,7 @@ export class ValidationCore {
 
     /**
      * makes entity validation - client side and real time server side.
-     * 
+     *
      * @param entity
      * @param customizer
      * @param handleRuleResult
@@ -25,7 +24,7 @@ export class ValidationCore {
 
     /**
      * recursively validates rules.
-     * 
+     *
      * @param entity
      * @param seqRules
      * @param sequence

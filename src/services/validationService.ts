@@ -1,5 +1,4 @@
 import 'angular';
-import {Promise} from 'es6-promise';
 
 import { ErrorProcessor } from '../utils/errorProcessor';
 import { IValidationRule } from '../interfaces/validationRule';
@@ -11,7 +10,7 @@ import { IValidatableController } from '../controllers/validatableController';
  * service interface for validation.
  */
 export interface IValidationService {
-    
+
     /**
      * validation call.
      */
@@ -30,15 +29,15 @@ export class ValidationService implements IValidationService {
 
     /**
      * inits controller.
-     * 
+     *
      * @param controller
      * @param scope
      * @param validator
      * @param entity
      */
     constructor(
-        protected controller: IValidatableController, 
-        protected scope: ng.IScope) 
+        protected controller: IValidatableController,
+        protected scope: ng.IScope)
     {
     }
 

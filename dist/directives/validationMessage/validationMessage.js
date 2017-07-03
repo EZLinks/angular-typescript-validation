@@ -11,9 +11,9 @@ var ValidationMessageController = (function () {
     function ValidationMessageController($scope) {
         this.$scope = $scope;
     }
+    ValidationMessageController.$inject = ['$scope'];
     return ValidationMessageController;
 }());
-ValidationMessageController.$inject = ['$scope'];
 exports.ValidationMessageController = ValidationMessageController;
 /**
  * directive for validation mesages display.

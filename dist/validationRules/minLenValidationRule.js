@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var es6_promise_1 = require("es6-promise");
 /**
  * rule for min lenght.
  */
@@ -35,7 +34,7 @@ var MinLenValidationRule = (function () {
      */
     MinLenValidationRule.prototype.validate = function (entity, value) {
         var _this = this;
-        var promise = new es6_promise_1.Promise(function (resolve) {
+        var promise = new Promise(function (resolve) {
             resolve(value.length >= _this.data);
         });
         return promise;

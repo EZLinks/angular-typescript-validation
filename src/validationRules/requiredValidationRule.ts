@@ -1,5 +1,4 @@
-﻿import { Promise } from 'es6-promise';
-import { IValidationRule } from '../interfaces/validationRule';
+﻿import { IValidationRule } from '../interfaces/validationRule';
 
 /**
  * rule for required.
@@ -7,7 +6,7 @@ import { IValidationRule } from '../interfaces/validationRule';
 export class RequiredValidationRule implements IValidationRule {
     /**
      * init rule
-     * 
+     *
      * @param message
      */
     constructor(public propertyName: string, public message: string) {
@@ -15,8 +14,8 @@ export class RequiredValidationRule implements IValidationRule {
 
     /**
      * action key.
-     * 
-     * @returns {string} 
+     *
+     * @returns {string}
      */
     public get attribute(): string {
         return 'required';
@@ -24,7 +23,7 @@ export class RequiredValidationRule implements IValidationRule {
 
     /**
      * validate action.
-     * 
+     *
      * @param value
      */
     public validate(entity: any, value: any): Promise<boolean> {

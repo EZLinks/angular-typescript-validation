@@ -1,5 +1,5 @@
 "use strict";
-var es6_promise_1 = require("es6-promise");
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for required.
  */
@@ -31,7 +31,7 @@ var GuidValidationRule = (function () {
      * @param value
      */
     GuidValidationRule.prototype.validate = function (entity, value) {
-        var promise = new es6_promise_1.Promise(function (resolve) {
+        var promise = new Promise(function (resolve) {
             var isValueDefined = !!value;
             var isValueNotEmptyGuid = value !== '00000000-0000-0000-0000-000000000000';
             // https://stackoverflow.com/a/7905992
