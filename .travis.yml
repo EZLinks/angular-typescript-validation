@@ -12,3 +12,4 @@ deploy:
     email: "ejohnson@ezlinks.com"
     on:
         tags: true
+        all_branches: true
