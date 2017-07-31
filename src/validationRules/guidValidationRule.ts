@@ -33,10 +33,11 @@ export class GuidValidationRule implements IValidationRule {
             let isValueNotEmptyGuid = value !== '00000000-0000-0000-0000-000000000000';
 
             // https://stackoverflow.com/a/7905992
-            let regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F‌​]{4}-[0-9a-fA-F]{12}‌​\}?$/;
-            let isValidGuid = value.match(regex);
+            let regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}?$/;
+            
+            let isValidGuid = isValueDefined && isValueNotEmptyGuid && value.match(regex) !== null;
 
-            resolve(isValueDefined && isValueNotEmptyGuid && isValidGuid);
+            resolve(isValidGuid);
         });
 
         return promise;
