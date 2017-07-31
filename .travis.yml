@@ -1,15 +1,16 @@
 language: node_js
 node_js:
-    - node
+- node
 before_script:
-  - npm install -g gulp
+- npm install -g gulp
 script:
-  - npm install
-  - npm run build
+- npm install
+- npm run build
 deploy:
-    provider: npm
-    api_key: "7d88f8f6-7945-459b-a8bd-0a2ab3eee0b3"
-    email: "ejohnson@ezlinks.com"
-    on:
-        tags: true
-        all_branches: true
+  provider: npm
+  api_key:
+    secure: PPQqSLLVE37T99haXVAeTWy6qUBPw9yjccCJ6Di0NOZ7PGZVEYJbqlcSo6uUTsQIgcSEcmLE60jV4I3m+5ZifRAK6KMfEhWnzKvTlYBs8LjT09dhg6Nv2xLqoazClg20q2kV3UuKf3yoAMg9Ad/j6c32NbpHY/nXIq0XHtr3N4WV4qnsGTpD1ZgC00C4Msdt98AXuhV/WZlCd4jiTSfVQQvk+ApanUnGbJ5rqtq4TYqa7fxMYvMS+2sHqg81ERG3gK/jO7amQ1cBaw51MJYmVCsURVzDaoXAAquxJ0WdXtKG1epotxhggP3TWN8S8kJdFZs1eUdQUFy5ZNeHYJfKBOwkKIAmkFA0w+KWIEv2nhWNQmJASvFoDCy8Vvvb4ocJydd1BQXn0Jh7pbNHTvjMaZ67CzmXSHVp2rdl7TlFBPyvrdle45GhBJSbhOpBAv9q3D0l/Eqz1GjmO0apd1BCsO0K1auP9HHl/CgdUBChKqtMNHNMSbk2LS1l1SNzQG6s4Art9dHT3Hp/d6+mk1e6q+fqPTh0P3K3GYc27DNrI2/SYXoxKjY2Vffm56IiOrNPFn0baHfuGRdrB9iyXG4Xi5m4KS8v6MgtCHzKvVY2doQB0M6Y0G6PXuQtosaThC4SknePE+0Z316tJx1kgxlLPmo1qMSCuooOz7zZ/VXYd1U=
+  email: ejohnson@ezlinks.com
+  on:
+    tags: true
+    all_branches: true
