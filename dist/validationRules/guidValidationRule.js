@@ -35,9 +35,9 @@ var GuidValidationRule = (function () {
             var isValueDefined = !!value;
             var isValueNotEmptyGuid = value !== '00000000-0000-0000-0000-000000000000';
             // https://stackoverflow.com/a/7905992
-            var regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F‌​]{4}-[0-9a-fA-F]{12}‌​\}?$/;
-            var isValidGuid = value.match(regex);
-            resolve(isValueDefined && isValueNotEmptyGuid && isValidGuid);
+            var regex = /^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}?$/;
+            var isValidGuid = isValueDefined && isValueNotEmptyGuid && value.match(regex) !== null;
+            resolve(isValidGuid);
         });
         return promise;
     };
