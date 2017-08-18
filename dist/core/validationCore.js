@@ -32,6 +32,9 @@ var ValidationCore = (function () {
         var rules = seqRules[sequence];
         var _loop_1 = function (i) {
             var rule = rules[i];
+            if (!rule) {
+                return "continue";
+            }
             var value = entity[rule.propertyName];
             var promise = rule.validate(entity, value)
                 .then(function (result) {

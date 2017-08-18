@@ -99,11 +99,11 @@ var ErrorProcessor = (function () {
         }
         return true;
     };
-    ErrorProcessor.validationAttr = 'validationAttrs';
-    ErrorProcessor.serverValidationAttr = 'serverValidation';
-    ErrorProcessor.serverErrorsAttr = 'serverErrors';
     return ErrorProcessor;
 }());
+ErrorProcessor.validationAttr = 'validationAttrs';
+ErrorProcessor.serverValidationAttr = 'serverValidation';
+ErrorProcessor.serverErrorsAttr = 'serverErrors';
 exports.ErrorProcessor = ErrorProcessor;
 
 //# sourceMappingURL=errorProcessor.js.map

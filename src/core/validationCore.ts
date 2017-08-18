@@ -44,6 +44,10 @@ export class ValidationCore {
         for (let i: number = 0; i < rules.length; i++) {
 
             let rule: IValidationRule = rules[i];
+            if (!rule) {
+                continue;
+            }
+
             let value: any = entity[rule.propertyName];
 
             let promise: Promise<boolean> = rule.validate(entity, value)
