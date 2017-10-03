@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for client custom validation.
  */
-var ClientValidationRule = (function () {
+var ClientValidationRule = /** @class */ (function () {
     /**
      * inits rule
      *

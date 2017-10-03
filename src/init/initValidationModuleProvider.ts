@@ -49,7 +49,7 @@ export class InitValidationModuleProvider {
      * default timeout validation.
      */
     private static get defaultTimeoutMs(): number {
-        return 100;
+        return 700;
     }
 
     /**

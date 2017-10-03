@@ -7,7 +7,7 @@ var errorProcessor_1 = require("../../utils/errorProcessor");
 /**
  * directive for validation mesages display.
  */
-var ValidationSummaryDirective = (function () {
+var ValidationSummaryDirective = /** @class */ (function () {
     /**
      * inits directive
      */
@@ -42,7 +42,7 @@ exports.ValidationSummaryDirective = ValidationSummaryDirective;
 /**
  * controller class
  */
-var ValidationSummaryController = (function () {
+var ValidationSummaryController = /** @class */ (function () {
     function ValidationSummaryController() {
         var _this = this;
         /**

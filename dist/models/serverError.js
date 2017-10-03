@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * server error container.
  */
-var ServerError = (function () {
+var ServerError = /** @class */ (function () {
     /**
      * init error
      */

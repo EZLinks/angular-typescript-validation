@@ -6,7 +6,7 @@ var validationCore_1 = require("../core/validationCore");
 /**
  * base service class for validation purposes.
  */
-var ValidationService = (function () {
+var ValidationService = /** @class */ (function () {
     /**
      * inits controller.
      *

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for required.
  */
-var EmailValidationRule = (function () {
+var EmailValidationRule = /** @class */ (function () {
     /**
      * init rule
      *

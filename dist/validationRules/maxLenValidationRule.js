@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * validation rule for max length.
  */
-var MaxLenValidationRule = (function () {
+var MaxLenValidationRule = /** @class */ (function () {
     /**
      * inits rule
      * @param data

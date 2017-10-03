@@ -4,7 +4,7 @@ require("angular");
 /**
  * base methods for validation purposes.
  */
-var ValidationUtilities = (function () {
+var ValidationUtilities = /** @class */ (function () {
     /* istanbul ignore next */ function ValidationUtilities() {
     }
     /**

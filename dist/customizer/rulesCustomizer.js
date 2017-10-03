@@ -12,7 +12,7 @@ var clientValidationRule_1 = require("../validationRules/clientValidationRule");
 /**
  * helps to define validation rules for models.
  */
-var RulesCustomizer = (function () {
+var RulesCustomizer = /** @class */ (function () {
     /**
      * inits rules customizer.
      *

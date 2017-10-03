@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for required.
  */
-var GuidValidationRule = (function () {
+var GuidValidationRule = /** @class */ (function () {
     /**
      * init rule
      *

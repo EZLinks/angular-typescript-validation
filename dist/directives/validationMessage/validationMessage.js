@@ -7,18 +7,18 @@ var errorProcessor_1 = require("../../utils/errorProcessor");
 /**
  * controller class
  */
-var ValidationMessageController = (function () {
+var ValidationMessageController = /** @class */ (function () {
     function ValidationMessageController($scope) {
         this.$scope = $scope;
     }
+    ValidationMessageController.$inject = ['$scope'];
     return ValidationMessageController;
 }());
-ValidationMessageController.$inject = ['$scope'];
 exports.ValidationMessageController = ValidationMessageController;
 /**
  * directive for validation mesages display.
  */
-var ValidationMessageDirective = (function () {
+var ValidationMessageDirective = /** @class */ (function () {
     /**
      * inits directive
      */
@@ -52,7 +52,7 @@ var ValidationMessageDirective = (function () {
     return ValidationMessageDirective;
 }());
 exports.ValidationMessageDirective = ValidationMessageDirective;
-var DirectiveWorker = (function () {
+var DirectiveWorker = /** @class */ (function () {
     function DirectiveWorker() {
         var _this = this;
         this.controllerAs = 'vm';

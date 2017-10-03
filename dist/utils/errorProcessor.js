@@ -5,7 +5,7 @@ var serverError_1 = require("../models/serverError");
 /**
  * global methods for error processing.
  */
-var ErrorProcessor = (function () {
+var ErrorProcessor = /** @class */ (function () {
     /* istanbul ignore next */ function ErrorProcessor() {
     }
     /**
@@ -99,11 +99,11 @@ var ErrorProcessor = (function () {
         }
         return true;
     };
+    ErrorProcessor.validationAttr = 'validationAttrs';
+    ErrorProcessor.serverValidationAttr = 'serverValidation';
+    ErrorProcessor.serverErrorsAttr = 'serverErrors';
     return ErrorProcessor;
 }());
-ErrorProcessor.validationAttr = 'validationAttrs';
-ErrorProcessor.serverValidationAttr = 'serverValidation';
-ErrorProcessor.serverErrorsAttr = 'serverErrors';
 exports.ErrorProcessor = ErrorProcessor;
 
 //# sourceMappingURL=errorProcessor.js.map

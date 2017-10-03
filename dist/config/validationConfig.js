@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * configurations.
  */
-var ValidationConfig = (function () {
+var ValidationConfig = /** @class */ (function () {
     /* istanbul ignore next */ function ValidationConfig() {
     }
     return ValidationConfig;

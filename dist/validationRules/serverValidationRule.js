@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for real time server validation.
  */
-var RealTimeServerValidationRule = (function () {
+var RealTimeServerValidationRule = /** @class */ (function () {
     /**
      * inits rule
      *

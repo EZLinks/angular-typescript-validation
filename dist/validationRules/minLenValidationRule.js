@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * rule for min lenght.
  */
-var MinLenValidationRule = (function () {
+var MinLenValidationRule = /** @class */ (function () {
     /**
      * inits rule.
      *

@@ -9,7 +9,7 @@ var validationCore_1 = require("../../core/validationCore");
  * directive for validation purposes.
  * inits watch on the model and validates changes in the model automatically.
  */
-var ValidatableFieldDirective = (function () {
+var ValidatableFieldDirective = /** @class */ (function () {
     function ValidatableFieldDirective() {
         this.restrict = 'A';
         this.require = 'ngModel';
@@ -43,7 +43,7 @@ exports.ValidatableFieldDirective = ValidatableFieldDirective;
 /**
  * class for processing directive tasks.
  */
-var DirectiveWorker = (function () {
+var DirectiveWorker = /** @class */ (function () {
     function DirectiveWorker() {
         this.timer = null;
     }

@@ -5,7 +5,7 @@ var validationConfig_1 = require("../config/validationConfig");
 /**
  * for module init purposes.
  */
-var InitValidationModuleProvider = (function () {
+var InitValidationModuleProvider = /** @class */ (function () {
     /* istanbul ignore next */ function InitValidationModuleProvider() {
     }
     /**
@@ -40,7 +40,7 @@ var InitValidationModuleProvider = (function () {
          * default timeout validation.
          */
         get: function () {
-            return 100;
+            return 700;
         },
         enumerable: true,
         configurable: true
@@ -75,9 +75,9 @@ var InitValidationModuleProvider = (function () {
         enumerable: true,
         configurable: true
     });
+    InitValidationModuleProvider.configuration = InitValidationModuleProvider.init();
     return InitValidationModuleProvider;
 }());
-InitValidationModuleProvider.configuration = InitValidationModuleProvider.init();
 exports.InitValidationModuleProvider = InitValidationModuleProvider;
 
 //# sourceMappingURL=initValidationModuleProvider.js.map
