@@ -1,6 +1,7 @@
 import 'angular';
 
 import { ValidationConfig } from '../config/validationConfig';
+declare const $: any;
 
 /**
  * for module init purposes.
@@ -16,7 +17,7 @@ export class InitValidationModuleProvider {
         this.configuration = new ValidationConfig();
 
         this.configuration.fieldErrorHandler = (isError: boolean, element: any, fieldName: string) => {
-            element.parents('form').find('[name=' + fieldName + ']').parents('.field').toggleClass('error', isError);
+            $(element.parents('form').find('[name=' + fieldName + ']').parents('.field')[0]).toggleClass('error', isError);
         };
 
         this.configuration.templateHtml = this.defaultTemplateHtml;

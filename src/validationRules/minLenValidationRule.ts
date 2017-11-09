@@ -31,7 +31,7 @@ export class MinLenValidationRule implements IValidationRule {
     public validate(entity: any, value: any): Promise<boolean> {
         let promise: Promise<boolean> = new Promise((resolve) => {
             if (value === null || value === undefined) {
-                resolve(false);
+                resolve(true);
             }
             resolve(value.length >= this.data);
         });

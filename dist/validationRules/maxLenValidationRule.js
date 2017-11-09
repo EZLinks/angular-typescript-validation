@@ -33,6 +33,9 @@ var MaxLenValidationRule = /** @class */ (function () {
     MaxLenValidationRule.prototype.validate = function (entity, value) {
         var _this = this;
         var promise = new Promise(function (resolve) {
+            if (value === null || value === undefined) {
+                resolve(true);
+            }
             resolve(value.length <= _this.data);
         });
         return promise;
