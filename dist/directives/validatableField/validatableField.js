@@ -13,7 +13,7 @@ var ValidatableFieldDirective = /** @class */ (function () {
     function ValidatableFieldDirective() {
         this.restrict = 'A';
         this.require = 'ngModel';
-        this.scope = { validatableField: '=', validatableGroup: '=' };
+        this.scope = { validatableField: '=', validatableGroup: '@' };
     }
     /**
      * creates a new instance of directive

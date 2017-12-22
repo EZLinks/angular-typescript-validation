@@ -80,7 +80,9 @@ var ValidationSummaryController = /** @class */ (function () {
          * gets the errors for this field.
          */
         get: function () {
+            var ruleMessagesNonDuplicated = [];
             var ruleMessages = [];
+            var messageStrings = {};
             for (var rule in this.rules) {
                 if (this.rules.hasOwnProperty(rule)) {
                     var serverErrors = errorProcessor_1.ErrorProcessor.getFieldServerErrors(rule, this.form);
@@ -88,7 +90,14 @@ var ValidationSummaryController = /** @class */ (function () {
                     ruleMessages = ruleMessages.concat(serverErrors);
                 }
             }
-            return ruleMessages;
+            for (var i = 0; i < ruleMessages.length; i++) {
+                var currentMessage = ruleMessages[i];
+                if (!messageStrings[currentMessage.message]) {
+                    ruleMessagesNonDuplicated.push(currentMessage);
+                    messageStrings[currentMessage.message] = true;
+                }
+            }
+            return ruleMessagesNonDuplicated;
         },
         enumerable: true,
         configurable: true

@@ -15,7 +15,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
 
     public restrict: string = 'A';
     public require: string = 'ngModel';
-    public scope: any = { validatableField: '=', validatableGroup: '=' };
+    public scope: any = { validatableField: '=', validatableGroup: '@' };
 
     /**
      * creates a new instance of directive

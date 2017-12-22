@@ -88,7 +88,9 @@ export class ValidationSummaryController {
      */
     public get errors(): IMessage[] {
 
+        let ruleMessagesNonDuplicated: IMessage[] = [];
         let ruleMessages: IMessage[] = [];
+        let messageStrings: object = {};
 
         for (let rule in this.rules) {
 
@@ -100,8 +102,18 @@ export class ValidationSummaryController {
                 ruleMessages = ruleMessages.concat(serverErrors as any);
             }
         }
+        
+        for (let i = 0; i < ruleMessages.length; i++) { 
+            
+            let currentMessage = ruleMessages[i];
 
-        return ruleMessages;
+            if (!messageStrings[currentMessage.message]) {
+                ruleMessagesNonDuplicated.push(currentMessage);
+                messageStrings[currentMessage.message] = true;
+            }
+        }
+
+        return ruleMessagesNonDuplicated;
     }
 
     /**
