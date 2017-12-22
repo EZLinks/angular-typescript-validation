@@ -13,7 +13,7 @@ var ValidatableFieldDirective = /** @class */ (function () {
     function ValidatableFieldDirective() {
         this.restrict = 'A';
         this.require = 'ngModel';
-        this.scope = { validatableField: '=' };
+        this.scope = { validatableField: '=', validatableGroup: '=' };
     }
     /**
      * creates a new instance of directive
@@ -32,7 +32,7 @@ var ValidatableFieldDirective = /** @class */ (function () {
     ValidatableFieldDirective.prototype.link = function (scope, element, attrs) {
         var worker = new DirectiveWorker();
         var basicController = validationUtilities_1.ValidationUtilities.getController(scope.validatableField);
-        if (worker.initFields(scope, element, attrs, basicController)) {
+        if (worker.initFields(scope, element, attrs, basicController, scope.validatableGroup)) {
             worker.watchModel(scope);
             worker.watchError(scope);
         }
@@ -46,6 +46,7 @@ exports.ValidatableFieldDirective = ValidatableFieldDirective;
 var DirectiveWorker = /** @class */ (function () {
     function DirectiveWorker() {
         this.timer = null;
+        this.groupFields = new Array();
     }
     /**
      * inits the main fields needed to proper work of the directive.
@@ -54,14 +55,19 @@ var DirectiveWorker = /** @class */ (function () {
      * @param element - input element
      * @param attrs - element attributes.
      * @param ctrl - controller.
+     * @param validatableGroup - the fields which should be validated as well on this item validation.
      * @returns {boolean}
      */
-    DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl) {
+    DirectiveWorker.prototype.initFields = function (scope, element, attrs, ctrl, validatableGroup) {
         this.element = element;
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
         this.item = ctrl.item;
+        if (validatableGroup) {
+            this.groupFields = validatableGroup.split(',');
+        }
+        this.groupFields.push(this.fieldName);
         if (this.seqRules && this.seqRules.length) {
             return true;
         }
@@ -77,7 +83,9 @@ var DirectiveWorker = /** @class */ (function () {
         var _this = this;
         scope.$watch("validatableField.model." + this.fieldName, function (newVal, oldVal) {
             if (newVal !== oldVal) {
-                errorProcessor_1.ErrorProcessor.clearFieldErrors(_this.fieldName, _this.form);
+                for (var i = 0; i < _this.groupFields.length; i++) {
+                    errorProcessor_1.ErrorProcessor.clearFieldErrors(_this.groupFields[i], _this.form);
+                }
                 if (_this.timer) {
                     clearTimeout(_this.timer);
                 }
@@ -85,7 +93,9 @@ var DirectiveWorker = /** @class */ (function () {
                     validationCore_1.ValidationCore.validateRules(_this.item, _this.seqRules, 0, function (rule, result) {
                         if (!result) {
                             scope.$apply(function () {
-                                errorProcessor_1.ErrorProcessor.setFieldError(_this.fieldName, rule.attribute, _this.form);
+                                for (var i = 0; i < _this.groupFields.length; i++) {
+                                    errorProcessor_1.ErrorProcessor.setFieldError(_this.groupFields[i], rule.attribute, _this.form);
+                                }
                             });
                         }
                     });

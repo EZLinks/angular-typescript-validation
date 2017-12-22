@@ -15,7 +15,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
 
     public restrict: string = 'A';
     public require: string = 'ngModel';
-    public scope: any = { validatableField: '=' };
+    public scope: any = { validatableField: '=', validatableGroup: '=' };
 
     /**
      * creates a new instance of directive
@@ -36,7 +36,7 @@ export class ValidatableFieldDirective implements ng.IDirective {
 
         let worker: DirectiveWorker = new DirectiveWorker();
         let basicController: IValidatableController = ValidationUtilities.getController(scope.validatableField);
-        if (worker.initFields(scope, element, attrs, basicController)) {
+        if (worker.initFields(scope, element, attrs, basicController, scope.validatableGroup)) {
             worker.watchModel(scope);
             worker.watchError(scope);
         }
@@ -55,6 +55,7 @@ class DirectiveWorker {
     private item: any;
 
     private timer: any = null;
+    private groupFields: Array<string> = new Array<string>();
 
     /**
      * inits the main fields needed to proper work of the directive.
@@ -63,19 +64,28 @@ class DirectiveWorker {
      * @param element - input element
      * @param attrs - element attributes.
      * @param ctrl - controller.
+     * @param validatableGroup - the fields which should be validated as well on this item validation.
      * @returns {boolean}
      */
     public initFields(
         scope: ng.IScope,
         element: ng.IAugmentedJQuery,
         attrs: ng.IAttributes,
-        ctrl: IValidatableController): boolean {
+        ctrl: IValidatableController,
+        validatableGroup: string
+    ): boolean {
 
         this.element = element;    
         this.fieldName = attrs['name'];
         this.form = ctrl.form;
         this.seqRules = ctrl.rulesCustomizer.seqRules(this.fieldName);
         this.item = ctrl.item;
+        
+        if (validatableGroup) {
+            this.groupFields = validatableGroup.split(',');            
+        }
+
+        this.groupFields.push(this.fieldName);
 
         if (this.seqRules && this.seqRules.length) {
             return true;
@@ -97,7 +107,9 @@ class DirectiveWorker {
 
                 if (newVal !== oldVal) {
 
-                    ErrorProcessor.clearFieldErrors(this.fieldName, this.form);
+                    for (let i = 0; i < this.groupFields.length; i++) { 
+                        ErrorProcessor.clearFieldErrors(this.groupFields[i], this.form);
+                    }
 
                     if (this.timer) {
                         clearTimeout(this.timer);
@@ -112,7 +124,11 @@ class DirectiveWorker {
 
                                     if (!result) {
                                         scope.$apply(() => {
-                                            ErrorProcessor.setFieldError(this.fieldName, rule.attribute, this.form);
+
+                                            for (let i = 0; i < this.groupFields.length; i++) { 
+                                                ErrorProcessor.setFieldError(this.groupFields[i], rule.attribute, this.form);
+                                            }
+                                            
                                         });
                                     }
                                 });
