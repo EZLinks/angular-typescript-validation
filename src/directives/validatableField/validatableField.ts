@@ -102,7 +102,7 @@ class DirectiveWorker {
      */
     public watchModel(scope: ng.IScope): void {
 
-        scope.$watch(`validatableField.model.${this.fieldName}`,
+        scope.$watch(`validatableField.item.${this.fieldName}`,
             (newVal: any, oldVal: any) => {
 
                 if (newVal !== oldVal) {

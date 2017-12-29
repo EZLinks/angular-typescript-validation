@@ -81,7 +81,7 @@ var DirectiveWorker = /** @class */ (function () {
      */
     DirectiveWorker.prototype.watchModel = function (scope) {
         var _this = this;
-        scope.$watch("validatableField.model." + this.fieldName, function (newVal, oldVal) {
+        scope.$watch("validatableField.item." + this.fieldName, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 for (var i = 0; i < _this.groupFields.length; i++) {
                     errorProcessor_1.ErrorProcessor.clearFieldErrors(_this.groupFields[i], _this.form);
