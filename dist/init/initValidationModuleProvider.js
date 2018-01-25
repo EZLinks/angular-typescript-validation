@@ -24,6 +24,7 @@ var InitValidationModuleProvider = /** @class */ (function () {
             this.setIfDefined(this.configuration, 'fieldErrorHandler', config.fieldErrorHandler);
             this.setIfDefined(this.configuration, 'templateHtml', config.templateHtml);
             this.setIfDefined(this.configuration, 'validationTimoutMs', config.validationTimoutMs);
+            this.setIfDefined(this.configuration, 'summaryTemplateHtml', config.summaryTemplateHtml);
         }
         return this.configuration;
     };
