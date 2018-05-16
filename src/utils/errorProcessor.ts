@@ -82,7 +82,7 @@ export class ErrorProcessor {
             return false;
         }
 
-        return form.$error[fieldName].length > 0;
+        return form.$error[fieldName].validationAttrs[attribute] === true;
     }
 
     /**
