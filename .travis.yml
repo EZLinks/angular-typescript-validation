@@ -3,6 +3,8 @@ node_js:
 - node
 before_script:
 - npm install -g gulp
+after_failure:
+- cat /home/travis/.npm/_logs/*debug.log
 script:
 - npm install
 - npm run build
