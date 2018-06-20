@@ -8,7 +8,11 @@ var replace = require("gulp-replace");
 var sourcemaps = require("gulp-sourcemaps");
 var p = require("./package.json");
 
-gulp.task("typescript", ["clean-scripts"], function() {
+gulp.task("clean-scripts", function (cb) {
+    return del(["./dist/**/*"], cb);
+});
+
+gulp.task("typescript", gulp.series("clean-scripts"), function () {
     var tsProject = ts.createProject("tsconfig.json", {
         typescript: require("typescript")
     });
@@ -25,19 +29,15 @@ gulp.task("typescript", ["clean-scripts"], function() {
         .pipe(gulp.dest("./dist"));
 });
 
-gulp.task("tslint", function() {
+gulp.task("tslint", function () {
     return gulp.src(["./src/**/*.ts", "!./typings/**/*.d.ts"])
         .pipe(tslint({
             formatter: "verbose"
         }));
 });
 
-gulp.task("clean-scripts", function(cb) {
-    return del(["./dist/**/*"], cb);
-});
-
-gulp.task("clean-typings", function(cb) {
+gulp.task("clean-typings", function (cb) {
     return del(["./typings"], cb);
 });
 
-gulp.task("build", ["tslint", "typescript"]);
+gulp.task("build", gulp.series("tslint", "typescript"));
