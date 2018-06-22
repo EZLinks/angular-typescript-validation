@@ -1,6 +1,6 @@
 {
   "name": "angular-typescript-validation",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Stores all your client side and real time server validation logics in one place, plugin provides similar way of validation as aurelia does.",
   "scripts": {
     "build": "gulp build"
