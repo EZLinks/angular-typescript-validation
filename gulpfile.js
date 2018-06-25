@@ -12,7 +12,7 @@ gulp.task("clean-scripts", function (cb) {
     return del(["./dist/**/*"], cb);
 });
 
-gulp.task("typescript", gulp.series("clean-scripts"), function () {
+gulp.task("typescript", function () {
     var tsProject = ts.createProject("tsconfig.json", {
         typescript: require("typescript")
     });
@@ -40,4 +40,4 @@ gulp.task("clean-typings", function (cb) {
     return del(["./typings"], cb);
 });
 
-gulp.task("build", gulp.series("tslint", "typescript"));
+gulp.task("build", gulp.series("tslint", "clean-scripts", "typescript"));
