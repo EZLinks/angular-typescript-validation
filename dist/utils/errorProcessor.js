@@ -62,7 +62,7 @@ var ErrorProcessor = /** @class */ (function () {
         if (!this.checkAttrs(fieldName, form, this.validationAttr)) {
             return false;
         }
-        return form.$error[fieldName][attribute] === true;
+        return form.$error[fieldName][this.validationAttr][attribute] === true;
     };
     /**
      * returns the server errors for field
