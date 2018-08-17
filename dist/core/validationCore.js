@@ -35,7 +35,7 @@ var ValidationCore = /** @class */ (function () {
             if (!rule) {
                 return "continue";
             }
-            var value = entity[rule.propertyName];
+            var value = ValidationCore.resolveValue(rule.propertyName, entity);
             var promise = rule.validate(entity, value)
                 .then(function (result) {
                 handleRuleResult(rule, result);
@@ -57,6 +57,11 @@ var ValidationCore = /** @class */ (function () {
             }
             return allValid;
         });
+    };
+    ValidationCore.resolveValue = function (path, obj, separator) {
+        if (separator === void 0) { separator = '.'; }
+        var properties = path.split(separator);
+        return properties.reduce(function (prev, curr) { return prev && prev[curr]; }, obj);
     };
     return ValidationCore;
 }());

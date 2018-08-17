@@ -48,10 +48,10 @@ export class ValidationUtilities {
 
         if (m && m.length >= 2) {
             let parts: Array<string> = m[1].split('.');
-            if (parts.length === 2) {
-                let fieldName = parts[1];
-				return fieldName.replace(' ', '');
-            }
+            parts.shift();
+            
+            let fieldName = parts.join('.');
+            return fieldName.replace(' ', '');            
         }
 
         throw new Error('Cannot get property name from expression.');

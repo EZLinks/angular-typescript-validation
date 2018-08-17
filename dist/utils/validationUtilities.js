@@ -37,10 +37,9 @@ var ValidationUtilities = /** @class */ (function () {
         var m = varExtractor.exec(func + '');
         if (m && m.length >= 2) {
             var parts = m[1].split('.');
-            if (parts.length === 2) {
-                var fieldName = parts[1];
-                return fieldName.replace(' ', '');
-            }
+            parts.shift();
+            var fieldName = parts.join('.');
+            return fieldName.replace(' ', '');
         }
         throw new Error('Cannot get property name from expression.');
     };

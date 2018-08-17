@@ -110,7 +110,7 @@ var DirectiveWorker = /** @class */ (function () {
      */
     DirectiveWorker.prototype.watchError = function (scope) {
         var _this = this;
-        scope.$watch("validatableField.form.$error." + this.fieldName, function (newVal, oldVal) {
+        scope.$watch("validatableField.form.$error[\"" + this.fieldName + "\"]", function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 var isFieldValid = errorProcessor_1.ErrorProcessor.isFieldValid(_this.fieldName, _this.form);
                 initValidationModuleProvider_1.InitValidationModuleProvider.config.fieldErrorHandler(!isFieldValid, _this.element, _this.fieldName);

@@ -15,7 +15,7 @@ var InitValidationModuleProvider = /** @class */ (function () {
         // init configuration
         this.configuration = new validationConfig_1.ValidationConfig();
         this.configuration.fieldErrorHandler = function (isError, element, fieldName) {
-            $(element.parents('form').find('[name=' + fieldName + ']').parents('.field')[0]).toggleClass('error', isError);
+            $(element.parents('form').find('[name="' + fieldName + '"]').parents('.field')[0]).toggleClass('error', isError);
         };
         this.configuration.templateHtml = this.defaultTemplateHtml;
         this.configuration.summaryTemplateHtml = this.defaultSummaryTemplateHtml;

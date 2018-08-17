@@ -145,7 +145,7 @@ class DirectiveWorker {
      */
     public watchError(scope: ng.IScope): void {
 
-        scope.$watch(`validatableField.form.$error.${this.fieldName}`,
+        scope.$watch(`validatableField.form.$error["${this.fieldName}"]`,
             (newVal: any, oldVal: any) => {
 
                 if (newVal !== oldVal) {

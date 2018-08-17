@@ -48,7 +48,7 @@ export class ValidationCore {
                 continue;
             }
 
-            let value: any = entity[rule.propertyName];
+            let value: any = ValidationCore.resolveValue(rule.propertyName, entity);
 
             let promise: Promise<boolean> = rule.validate(entity, value)
                 .then(result => {
@@ -76,5 +76,10 @@ export class ValidationCore {
 
                 return allValid;
             });
+    }
+
+    private static resolveValue(path: string, obj: Object, separator = '.') {
+		var properties = path.split(separator)
+		return properties.reduce((prev, curr) => prev && prev[curr], obj);		
     }
 }
