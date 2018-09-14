@@ -25,8 +25,8 @@
     "url": "https://github.com/EZLinks/angular-typescript-validation/issues"
   },
   "homepage": "https://github.com/EZLinks/angular-typescript-validation#readme",
-  "dependencies": {
-    "angular": "1.7.0",
+  "peerDependencies": {
+    "angular": "1.6.3",
     "jquery": "3.0.0"
   },
   "devDependencies": {
